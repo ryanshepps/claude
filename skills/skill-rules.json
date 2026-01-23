@@ -1,0 +1,230 @@
+{
+    "version": "1.0",
+    "description": "Skill activation triggers for Claude Code. Controls when skills automatically suggest or block actions.",
+    "skills": {
+        "skill-developer": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Meta-skill for creating and managing Claude Code skills",
+            "promptTriggers": {
+                "keywords": [
+                    "skill system",
+                    "create skill",
+                    "add skill",
+                    "skill triggers",
+                    "skill rules",
+                    "hook system",
+                    "skill development",
+                    "skill-rules.json"
+                ],
+                "intentPatterns": [
+                    "(how do|how does|explain).*?skill",
+                    "(create|add|modify|build).*?skill",
+                    "skill.*?(work|trigger|activate|system)"
+                ]
+            }
+        },
+        "brainstorming": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "medium",
+            "description": "Refines rough ideas into fully-formed designs through collaborative questioning, alternative exploration, and incremental validation. Use before writing code or implementation plans.",
+            "promptTriggers": {
+                "keywords": [
+                    "brainstorm",
+                    "brainstorming",
+                    "design",
+                    "designing",
+                    "ideation",
+                    "refine idea",
+                    "explore approaches",
+                    "explore alternatives",
+                    "design spec",
+                    "design document",
+                    "rough idea",
+                    "initial design"
+                ],
+                "intentPatterns": [
+                    "(brainstorm|ideate|explore).*?(idea|design|approach)",
+                    "(design|plan).*?(before|first)",
+                    "(help me|let's).*?(design|think through|figure out)",
+                    "(what|how) should (i|we) (design|build|approach)",
+                    "need to (design|think through|plan out)"
+                ]
+            }
+        },
+        "root-cause-tracing": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Systematically traces bugs backward through call stack to find original trigger. Use when errors occur deep in execution, for debugging test pollution, or when invalid data origin is unclear.",
+            "promptTriggers": {
+                "keywords": [
+                    "fix issue",
+                    "fix bug",
+                    "find cause",
+                    "root cause",
+                    "trace bug",
+                    "trace error",
+                    "stack trace",
+                    "call stack",
+                    "call chain",
+                    "trace back",
+                    "deep in execution",
+                    "wrong directory",
+                    "test pollution",
+                    "instrumentation",
+                    "debug logging",
+                    "git init wrong",
+                    "file created wrong",
+                    "invalid data",
+                    "where did",
+                    "original trigger",
+                    "which test causes"
+                ],
+                "intentPatterns": [
+                    "(trace|find|locate).*?(root cause|original|source|trigger)",
+                    "(error|bug).*?(deep|stack|trace|call chain)",
+                    "add.*?(instrumentation|logging|debug|stack trace)",
+                    "(which|what).*?test.*?(causes|triggers|pollutes)",
+                    "(trace|follow).*?(back|backwards|up)",
+                    "(git init|file created|directory).*?(wrong|incorrect)",
+                    "where (did|does).*?(come from|originate)"
+                ]
+            }
+        },
+        "stacked-prs": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Guide for creating and managing stacked pull requests using Graphite's gt CLI. Covers best practices for atomic PRs, branch dependencies, stack submission workflow, and ensuring GitHub Actions checks pass before submitting.",
+            "promptTriggers": {
+                "keywords": [
+                    "stacked pull requests",
+                    "stacked prs",
+                    "stacked diffs",
+                    "gt create",
+                    "gt submit",
+                    "gt stack submit",
+                    "gt stack sync",
+                    "graphite",
+                    "stack of prs",
+                    "multiple prs",
+                    "pr stack",
+                    "stack workflow",
+                    "branch dependencies",
+                    "atomic prs",
+                    "break down pr",
+                    "split pr",
+                    "ci checks",
+                    "github actions",
+                    "workflow checks",
+                    "pr checks",
+                    "ci passing",
+                    "quality gates"
+                ],
+                "intentPatterns": [
+                    "(create|make|build|submit).*?(stacked?|stack).*?(pr|pull request|diff)",
+                    "(use|using|work with).*?(graphite|gt cli|gt)",
+                    "(break down|split|divide).*?(pr|pull request|feature).*?multiple",
+                    "(submit|create).*?stack",
+                    "multiple.*?dependent.*?(pr|pull request)",
+                    "(atomic|small).*?(pr|pull request|commit)",
+                    "(run|verify|check).*?(ci|github actions|workflow).*?(locally|before)",
+                    "(ensure|make sure).*?(checks?|ci|tests?).*?pass"
+                ]
+            }
+        },
+        "technical-blog-writer": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "medium",
+            "description": "Write technical blog posts with deep research. Use for writing blog posts, technical articles, dev tutorials, how-to guides. Takes topics, researches thoroughly, produces polished posts with clear structure.",
+            "promptTriggers": {
+                "keywords": [
+                    "write blog post",
+                    "blog post",
+                    "technical blog",
+                    "write article",
+                    "technical article",
+                    "dev tutorial",
+                    "write tutorial",
+                    "how-to guide",
+                    "write a post",
+                    "draft blog",
+                    "create blog"
+                ],
+                "intentPatterns": [
+                    "(write|create|draft).*?(blog|article|tutorial|post)",
+                    "(blog|article|tutorial).*?(about|on|for)",
+                    "help me write.*?(blog|article|tutorial|post)"
+                ]
+            }
+        },
+        "technical-editor": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "medium",
+            "description": "Review and edit technical articles for clarity, conciseness, and professional tone. Removes fluff, improves logical flow, validates mental models, ensures direct enterprise-quality writing like Google, Anthropic, or Stripe documentation.",
+            "promptTriggers": {
+                "keywords": [
+                    "review article",
+                    "edit article",
+                    "review blog post",
+                    "edit blog post",
+                    "edit documentation",
+                    "review documentation",
+                    "technical editing",
+                    "edit for clarity",
+                    "remove fluff",
+                    "make concise",
+                    "improve writing",
+                    "polish article",
+                    "polish blog post",
+                    "review draft",
+                    "edit draft",
+                    "technical review",
+                    "copy edit",
+                    "copyedit",
+                    "proofread",
+                    "writing feedback",
+                    "edit my writing",
+                    "review my writing",
+                    "too wordy",
+                    "too verbose",
+                    "simplify writing",
+                    "tighten prose",
+                    "cut fluff"
+                ],
+                "intentPatterns": [
+                    "(review|edit|polish|improve|revise).*?(article|blog|post|documentation|draft|writing)",
+                    "(article|blog|post|documentation|draft).*?(review|edit|feedback|polish)",
+                    "(make|help).*?(concise|clearer|shorter|tighter|direct)",
+                    "(remove|cut|eliminate).*?(fluff|wordiness|filler)",
+                    "(check|review).*?(tone|clarity|flow|structure)",
+                    "too (wordy|verbose|long|fluffy)",
+                    "(provide|give).*?(feedback|review).*?(writing|article|post)"
+                ]
+            }
+        }
+    },
+    "notes": {
+        "enforcement_types": {
+            "suggest": "Skill suggestion appears but doesn't block execution",
+            "block": "Requires skill to be used before proceeding (guardrail)",
+            "warn": "Shows warning but allows proceeding"
+        },
+        "priority_levels": {
+            "critical": "Highest - Always trigger when matched",
+            "high": "Important - Trigger for most matches",
+            "medium": "Moderate - Trigger for clear matches",
+            "low": "Optional - Trigger only for explicit matches"
+        },
+        "customization": {
+            "pathPatterns": "Adjust to match your project structure (blog-api, auth-service, etc.)",
+            "keywords": "Add domain-specific terms relevant to your project",
+            "intentPatterns": "Use regex for flexible user intent matching"
+        }
+    }
+}
