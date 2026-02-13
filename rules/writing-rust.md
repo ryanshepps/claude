@@ -1,11 +1,3 @@
----
-paths:
-  - "**/*.rs"
-  - "**/Cargo.toml"
-  - "**/Cargo.lock"
-  - "**/{clippy,rustfmt}.toml"
----
-
 # Rust
 
 ## Ownership & Borrowing
