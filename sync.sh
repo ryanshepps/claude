@@ -49,6 +49,20 @@ sync_skills() {
   ls -1 "$dest"
 }
 
+sync_settings() {
+  local src="$REPO_DIR/settings.json"
+  local dest="$HOME/.claude/settings.json"
+
+  if [ -f "$src" ]; then
+    ln -sf "$src" "$dest"
+    echo "Settings: $src -> $dest"
+  else
+    echo "Settings: $src not found, skipping"
+  fi
+}
+
 sync_rules
 echo ""
 sync_skills
+echo ""
+sync_settings
