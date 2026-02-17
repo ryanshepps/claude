@@ -7,5 +7,18 @@
     "rust-analyzer-lsp@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
-  "autoMemoryEnabled": true
+  "autoMemoryEnabled": true,
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/run-commands-yourself.sh"
+          }
+        ]
+      }
+    ]
+  }
 }

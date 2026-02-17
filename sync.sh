@@ -61,8 +61,48 @@ sync_settings() {
   fi
 }
 
+sync_commands() {
+  local src="$REPO_DIR/commands"
+  local dest="$HOME/.claude/commands"
+
+  mkdir -p "$dest"
+
+  for link in "$dest"/*.md; do
+    [ -L "$link" ] && [[ "$(readlink "$link")" == "$src/"* ]] && rm "$link"
+  done
+
+  for file in "$src"/*.md; do
+    [ -f "$file" ] && ln -s "$file" "$dest/$(basename "$file")"
+  done
+
+  echo "Commands: $src -> $dest"
+  ls -1 "$dest"
+}
+
+sync_hooks() {
+  local src="$REPO_DIR/hooks"
+  local dest="$HOME/.claude/hooks"
+
+  mkdir -p "$dest"
+
+  for link in "$dest"/*.sh; do
+    [ -L "$link" ] && [[ "$(readlink "$link")" == "$src/"* ]] && rm "$link"
+  done
+
+  for file in "$src"/*.sh; do
+    [ -f "$file" ] && ln -s "$file" "$dest/$(basename "$file")"
+  done
+
+  echo "Hooks: $src -> $dest"
+  ls -1 "$dest"
+}
+
 sync_rules
 echo ""
 sync_skills
+echo ""
+sync_commands
+echo ""
+sync_hooks
 echo ""
 sync_settings
