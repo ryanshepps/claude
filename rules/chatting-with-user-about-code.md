@@ -42,7 +42,14 @@ When your changes create orphans:
 
 **The test:** Every changed line should trace directly to the user's request.
 
-## 4. Goal-Driven Execution
+## 4. Run Commands Yourself
+
+**Never ask the user to run commands. Always run them yourself.**
+
+- If you have the exact command, run it.
+- If you need more information that you can't fetch yourself, ask for the information — not for the user to run something.
+
+## 5. Goal-Driven Execution
 
 **Define success criteria. Loop until verified.**
 

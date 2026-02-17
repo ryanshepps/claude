@@ -7,18 +7,5 @@
     "rust-analyzer-lsp@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
-  "autoMemoryEnabled": true,
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "prompt",
-            "prompt": "NEVER ask the user to run commands. Always attempt to run the commands yourself before returning to the user. If you have the exact command the user should run, run the command. If you need more information from the user that you can't fetch yourself, ask the user for the information.",
-            "timeout": 30
-          }
-        ]
-      }
-    ]
-  }
+  "autoMemoryEnabled": true
 }
