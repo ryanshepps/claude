@@ -1,6 +1,17 @@
 # Coding Style
 
-## Immutability (CRITICAL)
+## Comments
+
+- NEVER include "historical" comments that will become irrelevant to whomever is reviewing the code at the present time.
+- Prefer not to use comments. The code could itself should be simple and understandable enought that it is self documenting.
+- If you feel that you must use a comment, add the comment and then refactor the code to make it self documenting so the comment is no longer needed.
+
+## Testing
+
+- NEVER test implementation details. Tests should test behaviours/features and should only fail when a "feature" or "behaviour" is broken, not when the implementation of the feature/behaviour is changed.
+- Tests SHOULD NOT overlap one another. If there is a regression in the behaviour/feature, only one test should fail which to make it easy to find what is failing. 
+
+## Immutability
 
 ALWAYS create new objects, NEVER mutate:
 
