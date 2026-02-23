@@ -3,11 +3,6 @@
     "commit": ""
   },
   "includeCoAuthoredBy": false,
-  "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true
-  },
-  "alwaysThinkingEnabled": true,
-  "autoMemoryEnabled": true,
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -19,6 +14,17 @@
           }
         ]
       }
+    ]
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "autoMemoryEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "permissions": {
+    "allow": [
+      "WebFetch"
     ]
   }
 }
