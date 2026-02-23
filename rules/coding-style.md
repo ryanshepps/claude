@@ -11,6 +11,11 @@
 - NEVER test implementation details. Tests should test behaviours/features and should only fail when a "feature" or "behaviour" is broken, not when the implementation of the feature/behaviour is changed.
 - Tests SHOULD NOT overlap one another. If there is a regression in the behaviour/feature, only one test should fail which to make it easy to find what is failing. 
 
+## Types
+
+- Care about types, use them to your advantage. Types are a powerful tool for ensuring correctness and preventing bugs.
+- When creating types, think about the mental model each type will create (e.g., does this type have a clear role/responsibility within the codebase given all the other types). If the mental model is unclear, consider refactoring the code to make it more clear.
+
 ## Immutability
 
 ALWAYS create new objects, NEVER mutate:
@@ -52,30 +57,3 @@ try {
   throw new Error('Detailed user-friendly message')
 }
 ```
-
-## Input Validation
-
-ALWAYS validate user input:
-
-```typescript
-import { z } from 'zod'
-
-const schema = z.object({
-  email: z.string().email(),
-  age: z.number().int().min(0).max(150)
-})
-
-const validated = schema.parse(input)
-```
-
-## Code Quality Checklist
-
-Before marking work complete:
-- [ ] Code is readable and well-named
-- [ ] Functions are small (<50 lines)
-- [ ] Files are focused (<800 lines)
-- [ ] No deep nesting (>4 levels)
-- [ ] Proper error handling
-- [ ] No console.log statements
-- [ ] No hardcoded values
-- [ ] No mutation (immutable patterns used)
