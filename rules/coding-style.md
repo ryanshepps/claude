@@ -2,19 +2,20 @@
 
 ## Comments
 
-- NEVER include "historical" comments that will become irrelevant to whomever is reviewing the code at the present time.
-- Prefer not to use comments. The code could itself should be simple and understandable enought that it is self documenting.
-- If you feel that you must use a comment, add the comment and then refactor the code to make it self documenting so the comment is no longer needed.
+- Do not write comments. If code needs a comment to be understood, refactor the code to be self-documenting instead.
+- NEVER include historical comments (e.g., "changed from X to Y", "added for bug #123", "previously this was..."). These become irrelevant immediately.
 
 ## Testing
 
-- NEVER test implementation details. Tests should test behaviours/features and should only fail when a "feature" or "behaviour" is broken, not when the implementation of the feature/behaviour is changed.
-- Tests SHOULD NOT overlap one another. If there is a regression in the behaviour/feature, only one test should fail which to make it easy to find what is failing. 
+- NEVER test implementation details (e.g., internal function calls, private method names, internal data structures). Tests should only fail when a behaviour is broken, not when the implementation behind it changes.
+- Tests should not overlap. Each behaviour should be covered by exactly one test so that a regression produces exactly one failure.
 
 ## Types
 
-- Care about types, use them to your advantage. Types are a powerful tool for ensuring correctness and preventing bugs.
-- When creating types, think about the mental model each type will create (e.g., does this type have a clear role/responsibility within the codebase given all the other types). If the mental model is unclear, consider refactoring the code to make it more clear.
+- Never use Any, unknown, untyped dictionaries/maps or any generic types -- narrow down to specific types instead.
+- Each type should represent a single domain concept with a single responsibility.
+- Prefer reusing/extending existing types when the domain concept is the same, instead of creating new ones.
+- Prefer flat types over deeply nested ones. Avoid generics/type parameters unless reuse across 2+ call sites demands it.
 
 ## Immutability
 
