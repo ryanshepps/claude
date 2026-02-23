@@ -4,7 +4,7 @@
 
 ### Implementation Details
 
-Never write tests that test implementation details. These tests fail when the code changes, not when the actual feature changes, resulting in a flakey and unreliable test suite.
+NEVER test implementation details (e.g., internal function calls, private method names, internal data structures). Tests should only fail when a behaviour is broken, not when the implementation behind it changes.
 
 ### Black Box
 
@@ -12,7 +12,7 @@ Treat the unit/stack that you are testing as a black box. Pass it inputs and exp
 
 ### Isolation
 
-Never write tests that are covered by other tests. It's always better to write less tests that cover more surface area (but are only testing one thing) so that if a feature regresses, it's easy to find the single test that is failing instead of having to parse through the noise of tests that are all failling because they are covering the same point of failure.
+Tests should not overlap. Each behaviour should be covered by exactly one test so that a regression produces exactly one failure.
 
 ### Editing Tests
 

@@ -5,11 +5,6 @@
 - Do not write comments. If code needs a comment to be understood, refactor the code to be self-documenting instead.
 - NEVER include historical comments (e.g., "changed from X to Y", "added for bug #123", "previously this was..."). These become irrelevant immediately.
 
-## Testing
-
-- NEVER test implementation details (e.g., internal function calls, private method names, internal data structures). Tests should only fail when a behaviour is broken, not when the implementation behind it changes.
-- Tests should not overlap. Each behaviour should be covered by exactly one test so that a regression produces exactly one failure.
-
 ## Types
 
 - Never use Any, unknown, untyped dictionaries/maps or any generic types -- narrow down to specific types instead.
