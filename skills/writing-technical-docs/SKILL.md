@@ -198,9 +198,6 @@ Before publishing, verify:
 |---|---|
 | Active voice | "The service retries failed requests" not "Failed requests are retried by the service" |
 | Present tense | "The API returns a 404" not "The API will return a 404" |
-| Second person for instructions | "Run `kubectl get pods`" not "One should run..." |
 | No hedge words | "This causes data loss" not "This might potentially cause data loss" |
-| Literal values in code font | "Set `MAX_RETRIES` to `3`" not "Set MAX_RETRIES to 3" |
-| Exact commands | `` `curl -X POST /api/v1/users` `` not "make a POST request to the users endpoint" |
 | Contrast pattern | "per interval, **not per charger**" not "per interval" |
 | Tables for states | Table with State / Behavior columns, not three sentences describing each state |
