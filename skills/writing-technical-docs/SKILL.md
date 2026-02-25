@@ -1,6 +1,6 @@
 ---
 name: writing-technical-docs
-description: Write technical documentation for internal developers. Use when creating, editing, or reviewing internal docs, API references, architecture docs, runbooks, onboarding guides, or system design documents. Covers writing style, document structure, formatting, scope decisions, and depth calibration. Applies to Outline wiki documents and markdown files.
+description: Write technical documentation for internal developers. Use when creating, editing, or reviewing internal docs, API references, architecture docs, runbooks, onboarding guides, or system design documents. Covers writing style, document structure, formatting, scope decisions, and depth calibration.
 ---
 
 # Writing Technical Documentation
@@ -177,25 +177,18 @@ Before publishing, verify:
 
 ---
 
-## Outline Wiki
+## Where to Publish
 
-You have access to Outline MCP tools for creating and managing documents. Use them.
+1. Check your connected MCPs for a documentation platform (e.g., Outline, Notion). If multiple documentation MCPs are available and the correct one is ambiguous, ask the user before proceeding.
+2. If no documentation MCP is connected, write markdown files to the `docs/` folder instead.
 
 **When writing new documentation:**
 
-1. Search Outline first — the document (or parts of it) may already exist
+1. Search first — the document (or parts of it) may already exist.
 2. Create multiple documents when the topic has distinct sub-concepts. Link between them instead of writing one long document.
-3. Place documents in the appropriate existing collection. Nest collections to reflect the domain hierarchy. Create new collections when needed.
+3. Place documents in the appropriate existing structure (collection, folder, or directory). Create new groupings when needed.
 
 **When a topic spans multiple concepts**, create a short parent document that summarizes the system and links to child documents for each concept. The parent should be readable in under a minute.
-
-**Example:** A "DemandResponse Event Processing" topic might become:
-
-- **Collection:** Demand Response > Handling Events
-  - **Event Processing Overview** — parent doc, summarizes the two-phase architecture and links to the others
-  - **Event Scheduling** — how events are scheduled and timers managed
-  - **Conflict Resolution** — how competing events are resolved per charger
-  - **Limit Removal and Recovery** — how limits are cleaned up and what happens on restart
 
 ---
 
