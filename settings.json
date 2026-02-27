@@ -4,13 +4,12 @@
   },
   "includeCoAuthoredBy": false,
   "hooks": {
-    "UserPromptSubmit": [
+    "Stop": [
       {
-        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.claude/hooks/run-commands-yourself.sh"
+            "command": "$HOME/.claude/hooks/enforce-run-commands.sh"
           }
         ]
       }
