@@ -36,6 +36,7 @@ PATTERNS=(
   '[Rr]un this command'
   '[Ee]xecute the following'
   '[Ee]xecute this command'
+  '[Yy]ou can try'
 )
 
 COMBINED=$(IFS='|'; echo "${PATTERNS[*]}")
