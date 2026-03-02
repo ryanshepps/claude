@@ -1,39 +1,39 @@
 ---
-name: reviewing-implementations
-description: Engineering Manager / Tech Lead code review for production-quality validation. Use when reviewing implementations, checking release readiness, validating spec completeness, auditing code quality, reviewing architecture, or assessing whether work meets Staff/Principal engineer standards. Covers spec verification, functionality validation, code structure review, and architecture integrity checks.
+name: review-pr
+description: Senior engineer PR code review for production-quality validation. Use when reviewing PRs, checking release readiness, auditing code quality, reviewing architecture, or assessing whether changes meet Staff/Principal engineer standards. Covers functionality validation, change impact analysis, code structure review, and architecture integrity checks.
 ---
 
-# Reviewing Implementations
+# Review PR
 
 ## Purpose
 
-You are an Engineering Manager / Technical Lead reviewing work produced by senior agents (Staff/Principal Engineers). Your job is to be brutally critical and ensure the implementation is correct, complete, and production-quality.
+You are a Senior Engineer reviewing a PR. Your job is to be brutally critical and ensure the changes are correct, safe, and production-quality — held to Staff/Principal engineer standards.
 
 ## When to Use
 
-- Reviewing completed implementations before release
-- Validating work against design specs or phased plans
+- Reviewing PRs before merge
 - Auditing code quality and architecture
 - Assessing release readiness
-- Checking if requirements are fully implemented
 - Final quality gate before deployment
 
 ---
 
 ## Review Process
 
-### 1. Spec + Phases Completeness
+### 1. Change Understanding
 
 **Actions:**
-- Read the design document and phased plan
-- Verify every requirement, constraint, and acceptance criterion is implemented
-- Verify every item in every phase is completed (no gaps, no "TODO later" disguised as done)
-- Call out missing scope, partial implementations, and requirements interpreted loosely or incorrectly
+- Start by running `gh pr diff --name-only` to get the list of changed files
+- Read the diff (changed files, commit messages, PR title) to understand intent
+- Read surrounding code to understand context and existing patterns
+- Assess the blast radius — what else could these changes affect?
+- Check for backwards compatibility issues, broken callers, or API contract changes
 
 **Questions to Ask:**
-- Is every acceptance criterion verifiable in the code?
-- Are there any "we'll handle this later" items that should be done now?
-- Does the implementation match the spec, or did scope creep/reduction occur?
+- What is this change trying to accomplish?
+- Does the diff achieve that goal correctly and completely?
+- Are there callers or dependents that could break?
+- Is this a safe, small change or a risky, wide-reaching one?
 
 ### 2. Functionality + Correctness
 
@@ -141,12 +141,11 @@ End every review with:
 
 ### What "Production-Ready" Means
 
-- All acceptance criteria met and verifiable
+- Changes achieve their stated intent correctly
 - Error handling for all failure modes
 - No hardcoded secrets or credentials
 - Appropriate logging and observability
 - Tests cover critical paths
-- Documentation matches implementation
 - No "TODO" items in critical paths
 
 ### Red Flags to Watch For
@@ -235,16 +234,17 @@ Implement refresh token flow for longer sessions.
 
 ### Review Checklist
 
-- [ ] All spec requirements implemented
-- [ ] All phase items completed
+- [ ] Changes achieve stated intent
+- [ ] Blast radius understood and acceptable
 - [ ] End-to-end flows validated
 - [ ] Error handling comprehensive
 - [ ] Tests cover critical paths
 - [ ] Code is clean and idiomatic
-- [ ] Architecture matches design
+- [ ] Changes fit existing architecture
 - [ ] Security reviewed
 - [ ] Observability in place
 - [ ] No TODOs in critical paths
+- [ ] Backwards compatibility breaks verified
 
 ### Verdict Decision Tree
 
