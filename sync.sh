@@ -30,10 +30,19 @@ sync_skills() {
 
   mkdir -p "$dest"
 
-  # Remove stale symlinks pointing into this repo
-  for link in "$dest"/*/; do
-    link="${link%/}"
-    [ -L "$link" ] && [[ "$(readlink "$link")" == "$src/"* ]] && rm "$link"
+  # Remove stale symlinks pointing into this repo (including broken ones)
+  for link in "$dest"/*; do
+    if [ -L "$link" ] && [[ "$(readlink "$link")" == "$src/"* ]]; then
+      rm "$link"
+    elif [ -d "$link" ] && [ ! -L "$link" ]; then
+      # Clean up real directories that should be symlinks (e.g. from a previous bad sync)
+      # Only remove if every file inside is either a symlink into src or matches a source file
+      local name
+      name="$(basename "$link")"
+      if [ -d "$src/$name" ]; then
+        rm -rf "$link"
+      fi
+    fi
   done
 
   # Create symlinks for current skill directories
