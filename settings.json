@@ -25,5 +25,8 @@
     "allow": [
       "WebFetch"
     ]
+  "statusLine": {
+    "type": "command",
+    "command": "input=$(cat); cwd=$(echo \"$input\" | jq -r '.cwd'); unstaged=$(git -C \"$cwd\" diff --name-only 2>/dev/null); untracked=$(git -C \"$cwd\" ls-files --others --exclude-standard 2>/dev/null); out=''; [ -n \"$unstaged\" ] && out=\"Unstaged: $(echo \"$unstaged\" | tr '\\n' ' ' | sed 's/ $//')\"; [ -n \"$untracked\" ] && { [ -n \"$out\" ] && out=\"$out | \"; out=\"${out}Untracked: $(echo \"$untracked\" | tr '\\n' ' ' | sed 's/ $//')\"; }; [ -n \"$out\" ] && echo \"$out\" || echo \"No changes\""
   }
 }
