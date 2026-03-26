@@ -3,13 +3,65 @@
     "commit": ""
   },
   "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "WebFetch"
+    ]
+  },
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/ryansheppard/knowledge/.claude/hooks/session-orient.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/ryansheppard/knowledge/.claude/hooks/validate-note.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/ryansheppard/knowledge/.claude/hooks/auto-commit.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash /Users/ryansheppard/Projects/claude/hooks/check-rules-reminder.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/ryansheppard/Projects/claude/hooks/check-rules-reminder.sh"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
           {
             "type": "command",
             "command": "$HOME/.claude/hooks/enforce-run-commands.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/ryansheppard/knowledge/.claude/hooks/session-capture.sh"
           }
         ]
       }
@@ -20,17 +72,18 @@
     "command": "input=$(cat); cwd=$(echo \"$input\" | jq -r '.cwd'); branch=$(git -C \"$cwd\" branch --show-current 2>/dev/null); unstaged=$(git -C \"$cwd\" diff --name-only 2>/dev/null); untracked=$(git -C \"$cwd\" ls-files --others --exclude-standard 2>/dev/null); out=''; [ -n \"$unstaged\" ] && out=\"Unstaged: $(echo \"$unstaged\" | tr '\\n' ' ' | sed 's/ $//')\"; [ -n \"$untracked\" ] && { [ -n \"$out\" ] && out=\"$out | \"; out=\"${out}Untracked: $(echo \"$untracked\" | tr '\\n' ' ' | sed 's/ $//')\"; }; [ -n \"$out\" ] && out=\"$out\\nBranch: $branch\" || out=\"No changes\\nBranch: $branch\"; echo \"$out\""
   },
   "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "arscontexta@agenticnotetaking": true
+  },
+  "extraKnownMarketplaces": {
+    "agenticnotetaking": {
+      "source": {
+        "source": "github",
+        "repo": "agenticnotetaking/arscontexta"
+      }
+    }
   },
   "alwaysThinkingEnabled": true,
   "autoMemoryEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
-  "permissions": {
-    "allow": [
-      "WebFetch"
-    ]
-  "statusLine": {
-    "type": "command",
-    "command": "input=$(cat); cwd=$(echo \"$input\" | jq -r '.cwd'); unstaged=$(git -C \"$cwd\" diff --name-only 2>/dev/null); untracked=$(git -C \"$cwd\" ls-files --others --exclude-standard 2>/dev/null); out=''; [ -n \"$unstaged\" ] && out=\"Unstaged: $(echo \"$unstaged\" | tr '\\n' ' ' | sed 's/ $//')\"; [ -n \"$untracked\" ] && { [ -n \"$out\" ] && out=\"$out | \"; out=\"${out}Untracked: $(echo \"$untracked\" | tr '\\n' ' ' | sed 's/ $//')\"; }; [ -n \"$out\" ] && echo \"$out\" || echo \"No changes\""
-  }
+  "skipDangerousModePermissionPrompt": true
 }
