@@ -10,31 +10,35 @@
   },
   "hooks": {
     "SessionStart": [
+{{- if .work }}
       {
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/ryansheppard/knowledge/.claude/hooks/session-orient.sh"
+            "command": "bash {{ .chezmoi.homeDir }}/knowledge/.claude/hooks/session-orient.sh"
           }
         ]
       }
+{{- end }}
     ],
     "PostToolUse": [
       {
         "matcher": "Write",
         "hooks": [
+{{- if .work }}
           {
             "type": "command",
-            "command": "bash /Users/ryansheppard/knowledge/.claude/hooks/validate-note.sh"
+            "command": "bash {{ .chezmoi.homeDir }}/knowledge/.claude/hooks/validate-note.sh"
           },
           {
             "type": "command",
-            "command": "bash /Users/ryansheppard/knowledge/.claude/hooks/auto-commit.sh",
+            "command": "bash {{ .chezmoi.homeDir }}/knowledge/.claude/hooks/auto-commit.sh",
             "timeout": 10
           },
+{{- end }}
           {
             "type": "command",
-            "command": "bash /Users/ryansheppard/Projects/claude/hooks/check-rules-reminder.sh"
+            "command": "bash {{ .chezmoi.homeDir }}/.claude/hooks/check-rules-reminder.sh"
           }
         ]
       },
@@ -43,7 +47,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/ryansheppard/Projects/claude/hooks/check-rules-reminder.sh"
+            "command": "bash {{ .chezmoi.homeDir }}/.claude/hooks/check-rules-reminder.sh"
           }
         ]
       }
@@ -53,18 +57,19 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.claude/hooks/enforce-run-commands.sh"
+            "command": "{{ .chezmoi.homeDir }}/.claude/hooks/enforce-run-commands.sh"
           }
         ]
-      },
+      }{{ if .work }},
       {
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/ryansheppard/knowledge/.claude/hooks/session-capture.sh"
+            "command": "bash {{ .chezmoi.homeDir }}/knowledge/.claude/hooks/session-capture.sh"
           }
         ]
       }
+{{- end }}
     ]
   },
   "statusLine": {
@@ -73,7 +78,12 @@
   },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "arscontexta@agenticnotetaking": true
+    "arscontexta@agenticnotetaking": false,
+{{- if .work }}
+    "arc@voltra": true,
+{{- end }}
+    "caveman@caveman": true,
+    "ck@cavekit-marketplace": true
   },
   "extraKnownMarketplaces": {
     "agenticnotetaking": {
@@ -81,9 +91,30 @@
         "source": "github",
         "repo": "agenticnotetaking/arscontexta"
       }
+    },
+{{- if .work }}
+    "voltra": {
+      "source": {
+        "source": "directory",
+        "path": "{{ .chezmoi.homeDir }}/Projects/voltra/Tools/VoltraClaudeRegistry"
+      }
+    },
+{{- end }}
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "cavekit-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "juliusbrussee/cavekit"
+      }
     }
   },
   "alwaysThinkingEnabled": true,
   "autoMemoryEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true
 }

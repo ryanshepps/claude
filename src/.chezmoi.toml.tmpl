@@ -1,0 +1,6 @@
+{{- $work := promptBoolOnce . "work" "Is this a work machine" -}}
+
+sourceDir = "{{ .chezmoi.homeDir }}/Projects/claude"
+
+[data]
+    work = {{ $work }}
