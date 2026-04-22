@@ -1,3 +1,16 @@
+---
+slug: writing-python
+categories: [python]
+priority: 1
+description: Python 3.10+ style — type annotations, dataclasses, pytest, error handling, module organization.
+applies_when:
+  - writing Python code
+  - reviewing Python code
+  - setting up a Python project
+  - writing Python tests
+related: [coding-style, writing-tests]
+---
+
 # Python
 
 ## Type Annotations

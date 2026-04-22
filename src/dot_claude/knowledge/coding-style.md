@@ -1,3 +1,16 @@
+---
+slug: coding-style
+categories: [style]
+priority: 1
+description: Universal coding style — comments, types, immutability, file organization, error handling.
+applies_when:
+  - writing any code
+  - reviewing code
+  - refactoring
+  - choosing file structure
+related: [chatting-with-user-about-code, writing-tests]
+---
+
 # Coding Style
 
 ## Comments

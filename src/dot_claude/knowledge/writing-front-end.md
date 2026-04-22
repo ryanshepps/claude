@@ -1,3 +1,16 @@
+---
+slug: writing-front-end
+categories: [frontend]
+priority: 1
+description: Next.js 15+ / React 19+ / TypeScript 5+ style — Server Components, hooks, type design, error boundaries, testing.
+applies_when:
+  - writing React components
+  - building Next.js apps
+  - designing TypeScript types
+  - writing frontend tests
+related: [coding-style, writing-tests]
+---
+
 # Front-End (Next.js / React / TypeScript / JavaScript)
 
 Applies to any front-end work using React 19+, Next.js 15+ (App Router), and TypeScript 5+. Default to TypeScript -- never start new files in plain JavaScript.

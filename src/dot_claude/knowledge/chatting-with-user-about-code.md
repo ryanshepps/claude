@@ -1,3 +1,16 @@
+---
+slug: chatting-with-user-about-code
+categories: [communication]
+priority: 1
+description: Karpathy guidelines — think before coding, simplicity first, surgical changes, run commands yourself, goal-driven execution.
+applies_when:
+  - any coding conversation
+  - code reviews
+  - debugging sessions
+  - estimating work
+related: [coding-style, kiss-principle, yagni]
+---
+
 # Karpathy Guidelines
 
 Behavioral guidelines to reduce common LLM coding mistakes, derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876).

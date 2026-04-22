@@ -1,3 +1,16 @@
+---
+slug: writing-rust
+categories: [rust]
+priority: 1
+description: Rust style — ownership, thiserror/anyhow, type design, typestate pattern, testing.
+applies_when:
+  - writing Rust code
+  - reviewing Rust code
+  - designing Rust APIs
+  - handling errors in Rust
+related: [coding-style, writing-tests]
+---
+
 # Rust
 
 ## Ownership & Borrowing

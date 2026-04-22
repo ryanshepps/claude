@@ -1,3 +1,16 @@
+---
+slug: writing-java
+categories: [java]
+priority: 1
+description: Java 21+ style — records, sealed classes, pattern matching, error handling, virtual threads, streams.
+applies_when:
+  - writing Java code
+  - reviewing Java code
+  - designing Java APIs
+  - modeling domain types
+related: [coding-style, writing-tests]
+---
+
 # Java
 
 ## Modern Language Features

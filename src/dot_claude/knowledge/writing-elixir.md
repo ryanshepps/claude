@@ -1,3 +1,16 @@
+---
+slug: writing-elixir
+categories: [elixir]
+priority: 1
+description: Elixir style — pattern matching, tagged tuples, OTP, supervision trees, structs, typespecs.
+applies_when:
+  - writing Elixir code
+  - designing OTP processes
+  - handling errors in Elixir
+  - designing structs
+related: [coding-style, writing-tests]
+---
+
 # Elixir
 
 ## Pattern Matching

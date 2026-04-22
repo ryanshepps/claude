@@ -1,3 +1,15 @@
+---
+slug: creating-prs
+categories: [prs]
+priority: 1
+description: PR creation workflow — ticket criteria, default branch sync, mandatory post-create skills (/review-pr and /production-readiness).
+applies_when:
+  - creating a pull request
+  - preparing to open a PR
+  - finalizing a feature branch
+related: [chatting-with-user-about-code]
+---
+
 # Creating PRs
 
 Use this rule when creating PRs.

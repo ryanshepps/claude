@@ -1,3 +1,16 @@
+---
+slug: writing-tests
+categories: [testing]
+priority: 1
+description: Test writing principles — black-box, no implementation details, test isolation, editing tests is fine.
+applies_when:
+  - writing any test
+  - reviewing tests
+  - refactoring a test suite
+  - debugging flaky tests
+related: [coding-style, testing-pyramid, pesticide-paradox]
+---
+
 # Writing Tests
 
 ## Best Practices

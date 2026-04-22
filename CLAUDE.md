@@ -46,7 +46,7 @@ CLAUDE.md, README.md, plans/…          → repo metadata, outside chezmoi's vi
 src/
   .chezmoi.toml.tmpl                   → init template; prompts for `work` bool, emits sourceDir
   dot_claude/                          → materializes to ~/.claude/
-    rules/                             → Global rules (*.md) loaded every conversation
+    knowledge/                         → Flat knowledge base. Fetched on demand via /code, NOT auto-loaded.
     skills/                            → Skill directories, each with a SKILL.md
     commands/                          → Slash commands (*.md)
     hooks/executable_*.sh              → Shell scripts; `executable_` prefix preserves +x
@@ -58,7 +58,7 @@ Work-specific config (e.g. `arc@voltra` plugin, `voltra` marketplace path, `know
 
 ## Conventions
 
-- Rules are standalone markdown files in `src/dot_claude/rules/` — one file per topic.
+- Knowledge entries are standalone markdown files in `src/dot_claude/knowledge/` — one file per entry. Each has YAML frontmatter with `slug`, `categories` (list), `priority` (1-5), `description`, `applies_when`, `related`, and optional `source`. Category MOCs (`<category>.md`) and a top-level `index.md` organize them. Fetched on demand via `/code`, not auto-loaded.
 - Skills are directories in `src/dot_claude/skills/<name>/` containing at minimum a `SKILL.md`. Large skills split content into multiple reference files.
 - Commands are markdown files in `src/dot_claude/commands/` that define slash commands.
 - Hooks are shell scripts in `src/dot_claude/hooks/` with the `executable_` prefix (chezmoi restores the +x bit on apply).
