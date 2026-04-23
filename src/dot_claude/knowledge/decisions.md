@@ -13,7 +13,9 @@ type: moc
 - [[hofstadters-law]] (p2) — It always takes longer than you expect, even when you take into account Hofstadter's Law.
 - [[occams-razor]] (p2) — The simplest explanation is often the most accurate one.
 - [[parkinsons-law]] (p2) — Work expands to fill the time available for its completion.
+- [[peak-end-rule]] (p2) — Users judge experiences by their peak moment and their end, not the average — invest heavily in both.
 - [[sunk-cost-fallacy]] (p2) — Sticking with a choice because you've invested time or energy in it, even when walking away helps you.
+- [[cognitive-bias]] (p3) — Users' perceptions and decisions are systematically distorted by mental shortcuts — design around these biases, not against them.
 - [[confirmation-bias]] (p3) — A tendency to favor information that supports our existing beliefs or ideas.
 - [[dunning-kruger-effect]] (p3) — The less you know about something, the more confident you tend to be.
 - [[hanlons-razor]] (p3) — Never attribute to malice that which is adequately explained by stupidity or carelessness.

@@ -1,6 +1,6 @@
 ---
 slug: teslers-law
-categories: [architecture, design]
+categories: [architecture, design, ux]
 priority: 2
 description: Every application has an inherent amount of irreducible complexity that can only be shifted, not eliminated.
 applies_when:

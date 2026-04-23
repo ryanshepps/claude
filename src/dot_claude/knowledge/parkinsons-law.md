@@ -1,6 +1,6 @@
 ---
 slug: parkinsons-law
-categories: [planning, decisions]
+categories: [planning, decisions, ux]
 priority: 2
 description: Work expands to fill the time available for its completion.
 applies_when:

@@ -1,6 +1,6 @@
 ---
 slug: occams-razor
-categories: [decisions]
+categories: [decisions, ux]
 priority: 2
 description: The simplest explanation is often the most accurate one.
 applies_when:

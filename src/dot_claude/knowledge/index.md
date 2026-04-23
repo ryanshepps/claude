@@ -5,7 +5,7 @@ type: moc
 
 # Knowledge Base
 
-65 entries across three axes: task-related laws, language-specific rules, cross-cutting guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).
+90 entries across three axes: task-related laws, language-specific rules, cross-cutting guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).
 
 ## Task territories (software engineering laws)
 
@@ -13,9 +13,13 @@ type: moc
 - [[design]] — Code patterns: DRY, KISS, YAGNI, SOLID, abstractions, coupling. (14 entries)
 - [[teams]] — Organizational dynamics, communication, team sizing, coordination. (10 entries)
 - [[planning]] — Estimation, timelines, optimization decisions, scoping. (11 entries)
-- [[quality]] — Testing, technical debt, code health, resilience. (16 entries)
+- [[quality]] — Testing, technical debt, code health, resilience. (17 entries)
 - [[scale]] — Performance, concurrency, parallelization limits, network effects. (3 entries)
-- [[decisions]] — Cognitive biases, heuristics, mental models for reasoning. (16 entries)
+- [[decisions]] — Cognitive biases, heuristics, mental models for reasoning. (18 entries)
+
+## UX & Design
+
+- [[ux]] — User experience laws: perception, cognition, decision-making, interaction patterns. (30 entries)
 
 ## Languages
 

@@ -36,10 +36,12 @@ CATEGORY_META: dict[str, tuple[str, str]] = {
     "prs": ("PRs", "Pull request workflow and review process."),
     "style": ("Style", "Universal coding style rules."),
     "communication": ("Communication", "How to converse with users about code."),
+    "ux": ("UX", "User experience laws: perception, cognition, decision-making, interaction patterns."),
 }
 
 GROUP_ORDER: list[tuple[str, list[str]]] = [
     ("Task territories (software engineering laws)", ["architecture", "design", "teams", "planning", "quality", "scale", "decisions"]),
+    ("UX & Design", ["ux"]),
     ("Languages", ["python", "rust", "java", "elixir", "frontend"]),
     ("Cross-cutting", ["testing", "prs", "style", "communication"]),
 ]

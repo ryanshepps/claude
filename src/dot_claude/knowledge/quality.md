@@ -14,6 +14,7 @@ type: moc
 - [[boy-scout-rule]] (p2) — Leave the code better than you found it.
 - [[broken-windows-theory]] (p2) — Don't leave broken windows (bad designs, wrong decisions, or poor code) unrepaired.
 - [[bus-factor]] (p2) — The minimum number of team members whose loss would put the project in serious trouble.
+- [[doherty-threshold]] (p2) — Keep system response under 400ms — below that threshold, users stay in flow and productivity climbs sharply.
 - [[goodharts-law]] (p2) — When a measure becomes a target, it ceases to be a good measure.
 - [[murphys-law]] (p2) — Anything that can go wrong will go wrong.
 - [[postels-law]] (p2) — Be conservative in what you do, be liberal in what you accept from others.

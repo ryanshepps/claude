@@ -1,6 +1,6 @@
 ---
 slug: postels-law
-categories: [quality, design]
+categories: [quality, design, ux]
 priority: 2
 description: Be conservative in what you do, be liberal in what you accept from others.
 applies_when:

@@ -1,6 +1,6 @@
 ---
 slug: pareto-principle
-categories: [decisions, quality, planning]
+categories: [decisions, quality, planning, ux]
 priority: 1
 description: 80% of the problems result from 20% of the causes.
 applies_when:
