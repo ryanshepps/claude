@@ -9,6 +9,8 @@ type: moc
 
 - [[kernighans-law]] (p1) — Debugging is twice as hard as writing the code in the first place.
 - [[pareto-principle]] (p1) — 80% of the problems result from 20% of the causes.
+- [[simplicity-first]] (p1) — Write the minimum code that solves the asked problem — no speculative features, abstractions, flexibility, or defensive handling.
+- [[surgical-changes]] (p1) — Touch only what the request requires — don't refactor, reformat, or clean up adjacent code uninvited.
 - [[technical-debt]] (p1) — Technical Debt is everything that slows us down when developing software.
 - [[yagni]] (p1) — Don't add functionality until it is necessary.
 - [[boy-scout-rule]] (p2) — Leave the code better than you found it.

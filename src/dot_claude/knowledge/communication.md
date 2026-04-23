@@ -7,4 +7,4 @@ type: moc
 
 ## Entries (by priority)
 
-- [[chatting-with-user-about-code]] (p1) — Karpathy guidelines — think before coding, simplicity first, surgical changes, run commands yourself, goal-driven execution.
+- [[run-commands-yourself]] (p2) — Agent executes commands directly — never hand the user a command to run on the agent's behalf.

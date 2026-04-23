@@ -8,6 +8,7 @@ type: moc
 ## Entries (by priority)
 
 - [[pareto-principle]] (p1) — 80% of the problems result from 20% of the causes.
+- [[think-before-coding]] (p1) — Surface assumptions and tradeoffs before writing code — don't hide confusion or silently pick between interpretations.
 - [[first-principles-thinking]] (p2) — Breaking a complex problem into its most basic blocks and then building up from there.
 - [[goodharts-law]] (p2) — When a measure becomes a target, it ceases to be a good measure.
 - [[hofstadters-law]] (p2) — It always takes longer than you expect, even when you take into account Hofstadter's Law.

@@ -5,17 +5,17 @@ type: moc
 
 # Knowledge Base
 
-90 entries across three axes: task-related laws, language-specific rules, cross-cutting guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).
+94 entries across three axes: task-related laws, language-specific rules, cross-cutting guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).
 
 ## Task territories (software engineering laws)
 
 - [[architecture]] — Laws governing system structure, coupling, service boundaries. (12 entries)
-- [[design]] — Code patterns: DRY, KISS, YAGNI, SOLID, abstractions, coupling. (14 entries)
+- [[design]] — Code patterns: DRY, KISS, YAGNI, SOLID, abstractions, coupling. (15 entries)
 - [[teams]] — Organizational dynamics, communication, team sizing, coordination. (10 entries)
-- [[planning]] — Estimation, timelines, optimization decisions, scoping. (11 entries)
-- [[quality]] — Testing, technical debt, code health, resilience. (17 entries)
+- [[planning]] — Estimation, timelines, optimization decisions, scoping. (12 entries)
+- [[quality]] — Testing, technical debt, code health, resilience. (19 entries)
 - [[scale]] — Performance, concurrency, parallelization limits, network effects. (3 entries)
-- [[decisions]] — Cognitive biases, heuristics, mental models for reasoning. (18 entries)
+- [[decisions]] — Cognitive biases, heuristics, mental models for reasoning. (19 entries)
 
 ## UX & Design
 
@@ -31,9 +31,9 @@ type: moc
 
 ## Cross-cutting
 
-- [[testing]] — Test writing principles and patterns. (1 entry)
+- [[testing]] — Test writing principles and patterns. (2 entries)
 - [[prs]] — Pull request workflow and review process. (1 entry)
-- [[style]] — Universal coding style rules. (1 entry)
+- [[style]] — Universal coding style rules. (2 entries)
 - [[communication]] — How to converse with users about code. (1 entry)
 
 ## How to Use

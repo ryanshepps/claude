@@ -7,7 +7,7 @@ applies_when:
   - creating a pull request
   - preparing to open a PR
   - finalizing a feature branch
-related: [chatting-with-user-about-code]
+related: [surgical-changes, goal-driven-execution]
 ---
 
 # Creating PRs

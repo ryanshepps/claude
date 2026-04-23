@@ -8,6 +8,7 @@ type: moc
 ## Entries (by priority)
 
 - [[brooks-law]] (p1) — Adding manpower to a late software project makes it later.
+- [[goal-driven-execution]] (p1) — Transform tasks into verifiable success criteria, then loop until verified — strong criteria enable independent iteration.
 - [[pareto-principle]] (p1) — 80% of the problems result from 20% of the causes.
 - [[premature-optimization]] (p1) — Premature optimization is the root of all evil.
 - [[technical-debt]] (p1) — Technical Debt is everything that slows us down when developing software.

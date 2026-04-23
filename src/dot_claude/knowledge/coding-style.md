@@ -8,7 +8,7 @@ applies_when:
   - reviewing code
   - refactoring
   - choosing file structure
-related: [chatting-with-user-about-code, writing-tests]
+related: [simplicity-first, surgical-changes, writing-tests]
 ---
 
 # Coding Style
