@@ -5,6 +5,8 @@ type: moc
 
 # Planning
 
+Estimation, sequencing, and scoping heuristics. Use when sizing work, picking what to optimize, or cutting scope under time pressure.
+
 ## Entries (by priority)
 
 - [[brooks-law]] (p1) — Adding manpower to a late software project makes it later.

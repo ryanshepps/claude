@@ -1,6 +1,6 @@
 ---
 slug: writing-rust
-categories: [rust]
+categories: [languages]
 priority: 1
 description: Rust style — ownership, thiserror/anyhow, type design, typestate pattern, testing.
 applies_when:

@@ -5,6 +5,8 @@ type: moc
 
 # Teams
 
+How org dynamics shape software outcomes — sizing, communication overhead, coordination cost. Use when planning team shape, splitting work, or diagnosing throughput drops.
+
 ## Entries (by priority)
 
 - [[brooks-law]] (p1) — Adding manpower to a late software project makes it later.

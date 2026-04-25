@@ -5,6 +5,8 @@ type: moc
 
 # Decisions
 
+Cognitive biases, heuristics, and reasoning models. Use when stuck, choosing between options, or sanity-checking your own confidence.
+
 ## Entries (by priority)
 
 - [[pareto-principle]] (p1) — 80% of the problems result from 20% of the causes.

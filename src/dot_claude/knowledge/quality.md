@@ -5,6 +5,8 @@ type: moc
 
 # Quality
 
+Testing strategy, debt, resilience, and code-health practices. Use when writing tests, weighing rewrites, or judging whether code can survive in production.
+
 ## Entries (by priority)
 
 - [[kernighans-law]] (p1) — Debugging is twice as hard as writing the code in the first place.
@@ -26,3 +28,7 @@ type: moc
 - [[linuss-law]] (p3) — Given enough eyeballs, all bugs are shallow.
 - [[pesticide-paradox]] (p3) — Repeatedly running the same tests becomes less effective over time.
 - [[sturgeons-law]] (p4) — 90% of everything is crap.
+
+## Tensions
+
+- **Boy-scout rule** vs **surgical changes** — opportunistic cleanup improves code health, but uninvited refactors bloat diff scope. Apply boy-scout for trivial single-line fixes adjacent to your task; stay surgical when reviewers need a tight, focused diff.

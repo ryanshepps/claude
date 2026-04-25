@@ -5,6 +5,8 @@ type: moc
 
 # Scale
 
+Limits on parallelization, network effects, and where adding hardware stops paying. Use when optimizing throughput or sizing concurrent systems.
+
 ## Entries (by priority)
 
 - [[amdahls-law]] (p3) — The speedup from parallelization is limited by the fraction of work that cannot be parallelized.

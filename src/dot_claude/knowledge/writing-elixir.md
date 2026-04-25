@@ -1,6 +1,6 @@
 ---
 slug: writing-elixir
-categories: [elixir]
+categories: [languages]
 priority: 1
 description: Elixir style — pattern matching, tagged tuples, OTP, supervision trees, structs, typespecs.
 applies_when:

@@ -1,6 +1,6 @@
 ---
 slug: writing-python
-categories: [python]
+categories: [languages]
 priority: 1
 description: Python 3.10+ style — type annotations, dataclasses, pytest, error handling, module organization.
 applies_when:

@@ -5,6 +5,8 @@ type: moc
 
 # Architecture
 
+How components couple, where boundaries fall, and why organizational shape leaks into design. Reach for these when scoping services, drawing boundaries, or diagnosing coupling.
+
 ## Entries (by priority)
 
 - [[conways-law]] (p1) — Organizations design systems that mirror their own communication structure. Team topology predicts system topology.

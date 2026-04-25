@@ -1,6 +1,6 @@
 ---
 slug: writing-java
-categories: [java]
+categories: [languages]
 priority: 1
 description: Java 21+ style — records, sealed classes, pattern matching, error handling, virtual threads, streams.
 applies_when:

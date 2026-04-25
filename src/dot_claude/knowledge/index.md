@@ -9,6 +9,8 @@ type: moc
 
 ## Task territories (software engineering laws)
 
+Engineering laws grouped by the kind of decision they inform.
+
 - [[architecture]] — Laws governing system structure, coupling, service boundaries. (12 entries)
 - [[design]] — Code patterns: DRY, KISS, YAGNI, SOLID, abstractions, coupling. (15 entries)
 - [[teams]] — Organizational dynamics, communication, team sizing, coordination. (10 entries)
@@ -19,19 +21,21 @@ type: moc
 
 ## UX & Design
 
+User-facing perception and interaction laws.
+
 - [[ux]] — User experience laws: perception, cognition, decision-making, interaction patterns. (30 entries)
 
 ## Languages
 
-- [[python]] — Python 3.10+ coding rules and style guides. (1 entry)
-- [[rust]] — Rust coding rules and style guides. (1 entry)
-- [[java]] — Java 21+ coding rules and style guides. (1 entry)
-- [[elixir]] — Elixir coding rules and style guides. (1 entry)
-- [[frontend]] — Next.js 15+, React 19+, TypeScript 5+ rules. (1 entry)
+Per-language style and idiom rules. Fetch when writing code in that language.
+
+- [[languages]] — Per-language coding rules and style guides. (5 entries)
 
 ## Cross-cutting
 
-- [[testing]] — Test writing principles and patterns. (2 entries)
+Process and craft rules that apply regardless of language or layer.
+
+- [[testing]] — Test writing principles and patterns. (1 entry)
 - [[prs]] — Pull request workflow and review process. (1 entry)
 - [[style]] — Universal coding style rules. (2 entries)
 - [[communication]] — How to converse with users about code. (1 entry)

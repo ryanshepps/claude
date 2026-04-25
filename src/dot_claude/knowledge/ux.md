@@ -5,6 +5,8 @@ type: moc
 
 # UX
 
+Perception, cognition, and interaction laws governing how users experience interfaces. Use when designing flows, hierarchies, or surfaces users touch.
+
 ## Entries (by priority)
 
 - [[cognitive-load]] (p1) — The mental effort required to use an interface — minimize it, because users have a finite budget per task.

@@ -1,6 +1,6 @@
 ---
 slug: goal-driven-execution
-categories: [planning, testing]
+categories: [planning]
 priority: 1
 description: Transform tasks into verifiable success criteria, then loop until verified — strong criteria enable independent iteration.
 applies_when:

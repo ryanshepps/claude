@@ -5,6 +5,8 @@ type: moc
 
 # Design
 
+Code-level patterns for what to abstract, what to leave concrete, and when copying beats unifying. Use when shaping a module, naming the duplication threshold, or pruning premature abstractions.
+
 ## Entries (by priority)
 
 - [[dry-principle]] (p1) — Every piece of knowledge must have a single, unambiguous, authoritative representation.

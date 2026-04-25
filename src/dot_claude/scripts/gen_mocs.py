@@ -19,31 +19,85 @@ class Leaf(TypedDict):
     description: str
 
 
-CATEGORY_META: dict[str, tuple[str, str]] = {
-    "architecture": ("Architecture", "Laws governing system structure, coupling, service boundaries."),
-    "design": ("Design", "Code patterns: DRY, KISS, YAGNI, SOLID, abstractions, coupling."),
-    "teams": ("Teams", "Organizational dynamics, communication, team sizing, coordination."),
-    "planning": ("Planning", "Estimation, timelines, optimization decisions, scoping."),
-    "quality": ("Quality", "Testing, technical debt, code health, resilience."),
-    "scale": ("Scale", "Performance, concurrency, parallelization limits, network effects."),
-    "decisions": ("Decisions", "Cognitive biases, heuristics, mental models for reasoning."),
-    "python": ("Python", "Python 3.10+ coding rules and style guides."),
-    "rust": ("Rust", "Rust coding rules and style guides."),
-    "java": ("Java", "Java 21+ coding rules and style guides."),
-    "elixir": ("Elixir", "Elixir coding rules and style guides."),
-    "frontend": ("Frontend", "Next.js 15+, React 19+, TypeScript 5+ rules."),
-    "testing": ("Testing", "Test writing principles and patterns."),
-    "prs": ("PRs", "Pull request workflow and review process."),
-    "style": ("Style", "Universal coding style rules."),
-    "communication": ("Communication", "How to converse with users about code."),
-    "ux": ("UX", "User experience laws: perception, cognition, decision-making, interaction patterns."),
+CATEGORY_META: dict[str, tuple[str, str, str]] = {
+    "architecture": (
+        "Architecture",
+        "Laws governing system structure, coupling, service boundaries.",
+        "How components couple, where boundaries fall, and why organizational shape leaks into design. Reach for these when scoping services, drawing boundaries, or diagnosing coupling.",
+    ),
+    "design": (
+        "Design",
+        "Code patterns: DRY, KISS, YAGNI, SOLID, abstractions, coupling.",
+        "Code-level patterns for what to abstract, what to leave concrete, and when copying beats unifying. Use when shaping a module, naming the duplication threshold, or pruning premature abstractions.",
+    ),
+    "teams": (
+        "Teams",
+        "Organizational dynamics, communication, team sizing, coordination.",
+        "How org dynamics shape software outcomes — sizing, communication overhead, coordination cost. Use when planning team shape, splitting work, or diagnosing throughput drops.",
+    ),
+    "planning": (
+        "Planning",
+        "Estimation, timelines, optimization decisions, scoping.",
+        "Estimation, sequencing, and scoping heuristics. Use when sizing work, picking what to optimize, or cutting scope under time pressure.",
+    ),
+    "quality": (
+        "Quality",
+        "Testing, technical debt, code health, resilience.",
+        "Testing strategy, debt, resilience, and code-health practices. Use when writing tests, weighing rewrites, or judging whether code can survive in production.",
+    ),
+    "scale": (
+        "Scale",
+        "Performance, concurrency, parallelization limits, network effects.",
+        "Limits on parallelization, network effects, and where adding hardware stops paying. Use when optimizing throughput or sizing concurrent systems.",
+    ),
+    "decisions": (
+        "Decisions",
+        "Cognitive biases, heuristics, mental models for reasoning.",
+        "Cognitive biases, heuristics, and reasoning models. Use when stuck, choosing between options, or sanity-checking your own confidence.",
+    ),
+    "languages": (
+        "Languages",
+        "Per-language coding rules and style guides.",
+        "One leaf per language with idioms, error handling, and testing conventions. Fetch the leaf matching the language you're writing.",
+    ),
+    "testing": ("Testing", "Test writing principles and patterns.", ""),
+    "prs": ("PRs", "Pull request workflow and review process.", ""),
+    "style": ("Style", "Universal coding style rules.", ""),
+    "communication": ("Communication", "How to converse with users about code.", ""),
+    "ux": (
+        "UX",
+        "User experience laws: perception, cognition, decision-making, interaction patterns.",
+        "Perception, cognition, and interaction laws governing how users experience interfaces. Use when designing flows, hierarchies, or surfaces users touch.",
+    ),
 }
 
-GROUP_ORDER: list[tuple[str, list[str]]] = [
-    ("Task territories (software engineering laws)", ["architecture", "design", "teams", "planning", "quality", "scale", "decisions"]),
-    ("UX & Design", ["ux"]),
-    ("Languages", ["python", "rust", "java", "elixir", "frontend"]),
-    ("Cross-cutting", ["testing", "prs", "style", "communication"]),
+CATEGORY_TENSIONS: dict[str, list[str]] = {
+    "quality": [
+        "**Boy-scout rule** vs **surgical changes** — opportunistic cleanup improves code health, but uninvited refactors bloat diff scope. Apply boy-scout for trivial single-line fixes adjacent to your task; stay surgical when reviewers need a tight, focused diff.",
+    ],
+}
+
+GROUP_ORDER: list[tuple[str, list[str], str]] = [
+    (
+        "Task territories (software engineering laws)",
+        ["architecture", "design", "teams", "planning", "quality", "scale", "decisions"],
+        "Engineering laws grouped by the kind of decision they inform.",
+    ),
+    (
+        "UX & Design",
+        ["ux"],
+        "User-facing perception and interaction laws.",
+    ),
+    (
+        "Languages",
+        ["languages"],
+        "Per-language style and idiom rules. Fetch when writing code in that language.",
+    ),
+    (
+        "Cross-cutting",
+        ["testing", "prs", "style", "communication"],
+        "Process and craft rules that apply regardless of language or layer.",
+    ),
 ]
 
 
@@ -81,7 +135,7 @@ def group_by_category(leaves: list[Leaf]) -> dict[str, list[Leaf]]:
 
 
 def render_moc(cat: str, leaves: list[Leaf]) -> str:
-    title, desc = CATEGORY_META.get(cat, (cat.capitalize(), f"{cat} entries"))
+    title, desc, orientation = CATEGORY_META.get(cat, (cat.capitalize(), f"{cat} entries", ""))
     lines = [
         "---",
         f"description: {desc}",
@@ -90,12 +144,19 @@ def render_moc(cat: str, leaves: list[Leaf]) -> str:
         "",
         f"# {title}",
         "",
-        "## Entries (by priority)",
-        "",
     ]
+    if orientation:
+        lines.extend([orientation, ""])
+    lines.extend(["## Entries (by priority)", ""])
     for leaf in leaves:
         lines.append(f"- [[{leaf['slug']}]] (p{leaf['priority']}) — {leaf['description']}")
     lines.append("")
+    tensions = CATEGORY_TENSIONS.get(cat, [])
+    if tensions:
+        lines.extend(["## Tensions", ""])
+        for t in tensions:
+            lines.append(f"- {t}")
+        lines.append("")
     return "\n".join(lines)
 
 
@@ -116,14 +177,16 @@ def render_index(groups: dict[str, list[Leaf]]) -> str:
         f"{total} entries across three axes: task-related laws, language-specific rules, cross-cutting guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).",
         "",
     ]
-    for group_title, cats in GROUP_ORDER:
+    for group_title, cats, group_orient in GROUP_ORDER:
         lines.append(f"## {group_title}")
         lines.append("")
+        if group_orient:
+            lines.extend([group_orient, ""])
         for cat in cats:
             if cat not in groups:
                 continue
             count = len(groups[cat])
-            _, cdesc = CATEGORY_META.get(cat, (cat.capitalize(), ""))
+            _, cdesc, _ = CATEGORY_META.get(cat, (cat.capitalize(), "", ""))
             noun = plural(count, "entry", "entries")
             lines.append(f"- [[{cat}]] — {cdesc} ({count} {noun})")
         lines.append("")
