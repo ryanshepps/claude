@@ -19,3 +19,4 @@ type: moc
 - [[second-system-effect]] (p2) — Small, successful systems tend to be followed by overengineered, bloated replacements.
 - [[sunk-cost-fallacy]] (p2) — Sticking with a choice because you've invested time or energy in it, even when walking away helps you.
 - [[gilbs-law]] (p3) — Anything you need to quantify can be measured in some way better than not measuring it.
+- [[ship-over-research]] (p3) — Define success criteria up-front and ship minimal scope — doing teaches more than researching.

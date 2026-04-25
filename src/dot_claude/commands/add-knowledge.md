@@ -60,6 +60,16 @@ source: <url>                        # optional; include if external
 - Never invent categories. The 16 existing categories are the only valid values. If the instruction genuinely doesn't fit any, stop and ask the user whether to add a new category (which requires updating `CATEGORY_META` in `~/.claude/scripts/gen_mocs.py` and validator).
 - Match existing density. Leaves are typically 150-300 words with a short body (Key Takeaways bullets, sub-sections, or a procedure — whatever fits the content).
 
+## MOC Best Practices
+
+Categories are MOCs (Maps of Content). When adding a leaf, also consider MOC health:
+
+- **5-entry minimum.** Do NOT propose a new category MOC unless 5+ related leaves exist or are imminent. Premature MOCs add maintenance burden without navigation value. If a leaf would land in an undersized category, prefer placing it in an adjacent existing MOC and noting the gap.
+- **Brief orientation per MOC.** Each category MOC opens with 2-3 sentences explaining what the topic covers and how to use the map (not a bare entries list). Orientation lives in `CATEGORY_META[cat].orientation` in `gen_mocs.py` so regeneration preserves it.
+- **Brief orientation per index group.** Each section in `index.md` (Task territories, Languages, Cross-cutting, etc.) opens with one sentence framing the group before the bullet list. Orientation lives in `GROUP_ORDER` entries in `gen_mocs.py`.
+- **Healthy MOC size: 10-40 entries.** Above 50, consider splitting. Below 5, consider merging or absorbing into an adjacent MOC.
+- **Context phrases on every link.** Bare `- [[slug]]` is an address book. Always include the description so readers can scan without opening each file (regen handles this automatically).
+
 ## Task
 
 $ARGUMENTS

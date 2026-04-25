@@ -24,5 +24,6 @@ type: moc
 - [[inversion]] (p3) — Solving a problem by considering the opposite outcome and working backward from it.
 - [[lindy-effect]] (p3) — The longer something has been in use, the more likely it is to continue being used.
 - [[map-is-not-the-territory]] (p3) — Our representations of reality are not the same as reality itself.
+- [[ship-over-research]] (p3) — Define success criteria up-front and ship minimal scope — doing teaches more than researching.
 - [[cunninghams-law]] (p4) — The best way to get the correct answer on the Internet is not to ask a question, it's to post the wrong answer.
 - [[sturgeons-law]] (p4) — 90% of everything is crap.
