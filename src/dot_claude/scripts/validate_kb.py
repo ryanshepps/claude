@@ -26,7 +26,7 @@ class Entry(TypedDict):
 
 CATEGORY_MOCS = {
     "architecture", "design", "teams", "planning", "quality", "scale", "decisions",
-    "python", "rust", "java", "elixir", "frontend",
+    "languages",
     "testing", "prs", "style", "communication",
     "ux",
 }

@@ -5,7 +5,7 @@ type: moc
 
 # Knowledge Base
 
-95 entries across three axes: task-related laws, language-specific rules, cross-cutting guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).
+96 entries across three axes: task-related laws, language-specific rules, cross-cutting guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).
 
 ## Task territories (software engineering laws)
 
@@ -29,7 +29,7 @@ User-facing perception and interaction laws.
 
 Per-language style and idiom rules. Fetch when writing code in that language.
 
-- [[languages]] — Per-language coding rules and style guides. (5 entries)
+- [[languages]] — Per-language coding rules and style guides. (6 entries)
 
 ## Cross-cutting
 
