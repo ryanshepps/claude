@@ -24,6 +24,15 @@
     ],
     "PostToolUse": [
       {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {{ .chezmoi.homeDir }}/.claude/hooks/log-knowledge-fetch.sh"
+          }
+        ]
+      },
+      {
         "matcher": "Write",
         "hooks": [
 {{- if .work }}
