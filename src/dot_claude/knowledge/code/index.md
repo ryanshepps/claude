@@ -3,9 +3,9 @@ description: Entry point to the knowledge base. Start here to discover territori
 type: moc
 ---
 
-# Knowledge Base
+# Knowledge Base — code
 
-96 entries across three axes: task-related laws, language-specific rules, cross-cutting guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).
+96 entries. Software-engineering laws, language rules, and cross-cutting craft guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).
 
 ## Task territories (software engineering laws)
 

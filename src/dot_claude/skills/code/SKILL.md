@@ -1,11 +1,27 @@
 ---
-description: Execute a coding task with on-demand access to the knowledge base (laws, rules, guides).
-argument-hint: "[task description]"
+name: code
+description: Fetch domain knowledge from the code knowledge base (laws, language rules, workflow guides) before starting non-trivial coding work. Use when implementing a new file/function/feature, refactoring, making a design or architecture decision, choosing a language idiom, writing tests, or addressing PR review comments. Skip for one-line edits, typo fixes, comment tweaks, pure file reads, or trivial exploration without changes. Auto-triggers on substantive coding tasks; the user can also invoke explicitly by saying "fetch knowledge" or "consult the KB".
 ---
 
-# /code $ARGUMENTS
+# Code Knowledge
 
-You have on-demand access to the **code knowledge base** at `~/.claude/knowledge/code/`. Fetch as the task unfolds — do NOT front-load everything. ⊥ Read from `~/.claude/knowledge/write/` — that's the writing KB, owned by `/write`.
+You have on-demand access to the **code knowledge base** at `~/.claude/knowledge/code/`. Fetch as the task unfolds — do NOT front-load everything. ⊥ Read from `~/.claude/knowledge/write/` — that's the writing KB, owned by the `write` skill.
+
+## Trigger Discipline
+
+Before fetching, confirm the work is substantive enough to pay the KB-traversal tax:
+
+| Substantive — fetch | Trivial — skip |
+|---------------------|----------------|
+| New module, file, or function | Renaming a single variable |
+| Refactor touching 3+ files | Fixing a typo or comment |
+| Architecture / design decision | Removing dead imports |
+| Choosing language idiom or pattern | Reverting a one-line change |
+| Writing or restructuring tests | Updating a string literal |
+| Responding to PR review comments | Pure code reading / answering "what does this do?" |
+| Resolving a non-obvious bug | Re-running a command |
+
+If the task is trivial, skip the fetch entirely. Do not narrate. Do not explain.
 
 ## Knowledge Base Structure
 
@@ -52,10 +68,6 @@ This audit trail lets the user pause you if the wrong knowledge is entering cont
 - **5** — narrow applicability
 
 Default to higher priority unless the task specifically needs niche entries.
-
-## Task
-
-$ARGUMENTS
 
 ## Execution
 
