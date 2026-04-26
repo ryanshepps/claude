@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Static validation of the knowledge/ structure.
+"""Static validation of a domain-scoped knowledge base.
 
-Default knowledge dir is `../knowledge` relative to this script. Override with
-`--knowledge-dir <path>` when running outside the standard layout.
+Domain auto-detected from `--knowledge-dir` basename: must be `code` or `write`.
+Each domain has its own valid CATEGORY_MOCS set.
+
+Default knowledge dir is `../knowledge/code` relative to this script. Override
+with `--knowledge-dir <path>` when running outside the standard layout.
 
 Exits 0 on pass, 1 on any errors. Warnings do not fail the run.
 """
@@ -24,11 +27,20 @@ class Entry(TypedDict):
     is_moc: bool
 
 
-CATEGORY_MOCS = {
+CODE_CATEGORY_MOCS: set[str] = {
     "architecture", "design", "teams", "planning", "quality", "scale", "decisions",
     "languages",
     "testing", "prs", "style", "communication",
     "ux",
+}
+
+WRITE_CATEGORY_MOCS: set[str] = {
+    "tone", "structure", "format",
+}
+
+DOMAIN_MOCS: dict[str, set[str]] = {
+    "code": CODE_CATEGORY_MOCS,
+    "write": WRITE_CATEGORY_MOCS,
 }
 
 
@@ -72,7 +84,7 @@ def extract_wikilinks(text: str) -> list[str]:
     return re.findall(r"\[\[([^\]]+)\]\]", text)
 
 
-def validate(knowledge_dir: pathlib.Path) -> int:
+def validate(knowledge_dir: pathlib.Path, category_mocs: set[str]) -> int:
     errors: list[str] = []
     warnings: list[str] = []
     files = sorted(knowledge_dir.glob("*.md"))
@@ -87,14 +99,14 @@ def validate(knowledge_dir: pathlib.Path) -> int:
             errors.append(f"{path.name}: no frontmatter")
             continue
         stem = path.stem
-        if stem != "index" and stem not in CATEGORY_MOCS and parsed["slug"] != stem:
+        if stem != "index" and stem not in category_mocs and parsed["slug"] != stem:
             errors.append(f"{path.name}: slug '{parsed['slug']}' does not match filename stem '{stem}'")
         entries[stem] = parsed
 
     if "index" not in entries:
         errors.append("index.md: missing top-level MOC")
 
-    for cat in CATEGORY_MOCS:
+    for cat in category_mocs:
         if cat not in entries:
             errors.append(f"{cat}.md: category MOC missing")
 
@@ -104,7 +116,7 @@ def validate(knowledge_dir: pathlib.Path) -> int:
             continue
         declared_categories.update(entry["categories"])
         for cat in entry["categories"]:
-            if cat not in CATEGORY_MOCS:
+            if cat not in category_mocs:
                 errors.append(f"{stem}.md: declares unknown category '{cat}'")
         for rel in entry["related"]:
             if rel not in entries:
@@ -116,7 +128,7 @@ def validate(knowledge_dir: pathlib.Path) -> int:
         if not entry["applies_when"]:
             warnings.append(f"{stem}.md: empty applies_when")
 
-    extra_cats = CATEGORY_MOCS - declared_categories
+    extra_cats = category_mocs - declared_categories
     if extra_cats:
         warnings.append(f"MOCs with no leaves declaring them: {sorted(extra_cats)}")
 
@@ -147,16 +159,28 @@ def validate(knowledge_dir: pathlib.Path) -> int:
     return 0
 
 
+def detect_domain(knowledge_dir: pathlib.Path) -> str:
+    name = knowledge_dir.name
+    if name not in DOMAIN_MOCS:
+        print(
+            f"FAIL: knowledge-dir basename must be one of {sorted(DOMAIN_MOCS)}; got '{name}' from {knowledge_dir}",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+    return name
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    default_kb = pathlib.Path(__file__).resolve().parent.parent / "knowledge"
+    default_kb = pathlib.Path(__file__).resolve().parent.parent / "knowledge" / "code"
     parser.add_argument("--knowledge-dir", type=pathlib.Path, default=default_kb)
     args = parser.parse_args()
     kb = args.knowledge_dir.resolve()
     if not kb.is_dir():
         print(f"FAIL: knowledge dir not found: {kb}", file=sys.stderr)
         return 1
-    return validate(kb)
+    domain = detect_domain(kb)
+    return validate(kb, DOMAIN_MOCS[domain])
 
 
 if __name__ == "__main__":

@@ -5,17 +5,17 @@ argument-hint: "[task description]"
 
 # /code $ARGUMENTS
 
-You have on-demand access to a flat knowledge base at `~/.claude/knowledge/`. Fetch as the task unfolds — do NOT front-load everything.
+You have on-demand access to the **code knowledge base** at `~/.claude/knowledge/code/`. Fetch as the task unfolds — do NOT front-load everything. ⊥ Read from `~/.claude/knowledge/write/` — that's the writing KB, owned by `/write`.
 
 ## Knowledge Base Structure
 
 - **Leaves** — atomic `.md` files, one per entry. Each has frontmatter with `slug`, `categories` (list), `priority` (1-5), `description`, `applies_when`, `related`.
 - **Category MOCs** — `<category>.md` files list all leaves in that category, sorted by priority.
-- **Top-level index** — `index.md` lists all 16 category MOCs grouped by axis (task / language / cross-cutting).
+- **Top-level index** — `index.md` lists all category MOCs grouped by axis (task / language / cross-cutting).
 
 ## Flow
 
-1. **Read `~/.claude/knowledge/index.md`** first to see available territories.
+1. **Read `~/.claude/knowledge/code/index.md`** first to see available territories.
 2. **Classify the task** against categories:
    - Task-axis: `architecture`, `design`, `teams`, `planning`, `quality`, `scale`, `decisions`
    - Language-axis: `python`, `rust`, `java`, `elixir`, `frontend`
@@ -39,7 +39,7 @@ Rules:
 - One line per Read, immediately before the tool call.
 - Always include the priority tag for leaf files (not MOCs).
 - State the reason in terms of THIS task, not the general topic of the entry.
-- Do NOT narrate non-knowledge Reads (source code, configs, etc.) — only the 82 files under `~/.claude/knowledge/`.
+- Do NOT narrate non-knowledge Reads (source code, configs, etc.) — only files under `~/.claude/knowledge/code/`.
 
 This audit trail lets the user pause you if the wrong knowledge is entering context.
 
@@ -59,4 +59,4 @@ $ARGUMENTS
 
 ## Execution
 
-Read `~/.claude/knowledge/index.md` first. Classify. Read 1-2 category MOCs. Pick 3-7 leaves. Read them. Apply. Iterate.
+Read `~/.claude/knowledge/code/index.md` first. Classify. Read 1-2 category MOCs. Pick 3-7 leaves. Read them. Apply. Iterate.

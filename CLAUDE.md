@@ -46,7 +46,9 @@ CLAUDE.md, README.md, plans/…          → repo metadata, outside chezmoi's vi
 src/
   .chezmoi.toml.tmpl                   → init template; prompts for `work` bool, emits sourceDir
   dot_claude/                          → materializes to ~/.claude/
-    knowledge/                         → Flat knowledge base. Fetched on demand via /code, NOT auto-loaded.
+    knowledge/
+      code/                            → Code knowledge base. Fetched on demand via /code, NOT auto-loaded.
+      write/                           → Writing knowledge base. Fetched on demand via /write, NOT auto-loaded.
     skills/                            → Skill directories, each with a SKILL.md
     commands/                          → Slash commands (*.md)
     hooks/executable_*.sh              → Shell scripts; `executable_` prefix preserves +x
@@ -58,7 +60,8 @@ Work-specific config (e.g. `arc@voltra` plugin, `voltra` marketplace path, `know
 
 ## Conventions
 
-- Knowledge entries are standalone markdown files in `src/dot_claude/knowledge/` — one file per entry. Each has YAML frontmatter with `slug`, `categories` (list), `priority` (1-5), `description`, `applies_when`, `related`, and optional `source`. Category MOCs (`<category>.md`) and a top-level `index.md` organize them. Fetched on demand via `/code`, not auto-loaded.
+- Knowledge entries are standalone markdown files in `src/dot_claude/knowledge/<domain>/` — one file per entry, where `<domain>` ∈ {`code`, `write`}. The two KBs are disjoint (no shared leaves, no parent index). Each has YAML frontmatter with `slug`, `categories` (list), `priority` (1-5), `description`, `applies_when`, `related`, and optional `source`. Category MOCs (`<category>.md`) and a per-domain `index.md` organize them. Fetched on demand via `/code` (reads `code/`) or `/write` (reads `write/`), not auto-loaded.
+- KB tooling (`add-knowledge`, `audit-knowledge`, `knowledge-stats`, scripts) is parameterized by domain. `add-knowledge` requires a leading `<domain>` arg; `audit-knowledge` and `knowledge-stats` accept an optional `[domain]` arg (default: both). Scripts auto-detect domain from `--knowledge-dir` basename.
 - Skills are directories in `src/dot_claude/skills/<name>/` containing at minimum a `SKILL.md`. Large skills split content into multiple reference files.
 - Commands are markdown files in `src/dot_claude/commands/` that define slash commands.
 - Hooks are shell scripts in `src/dot_claude/hooks/` with the `executable_` prefix (chezmoi restores the +x bit on apply).

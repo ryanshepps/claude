@@ -11,7 +11,9 @@ README.md                             → this file (not synced)
 src/
   .chezmoi.toml.tmpl                  → init template; prompts for `work` bool
   dot_claude/                         → materializes to ~/.claude/
-    knowledge/                        → flat knowledge base, fetched on demand
+    knowledge/
+      code/                           → code knowledge base (laws, style, workflow), consumed by /code
+      write/                          → writing knowledge base (tone, structure, format), consumed by /write
     commands/                         → slash commands (*.md)
     skills/                           → skill directories (each has SKILL.md)
     agents/                           → agent definitions
@@ -22,42 +24,56 @@ src/
 
 ## Knowledge Management System
 
-The `knowledge/` folder is an agent-consumable corpus of coding laws, style rules, and workflow guides. Inspired by [arscontexta](https://github.com/agenticnotetaking/arscontexta).
+The `knowledge/` folder holds two domain-scoped, agent-consumable corpora. Inspired by [arscontexta](https://github.com/agenticnotetaking/arscontexta).
+
+- `knowledge/code/` — coding laws, style rules, language guides, workflow patterns. Consumed by `/code`.
+- `knowledge/write/` — prose craft: tone, structure, format. Consumed by `/write`.
+
+KBs are disjoint — no shared leaves, no parent index. Each domain is sovereign.
 
 ### Concepts
 
-- **Leaf** — atomic `.md` file, one per entry (e.g., `conways-law.md`, `writing-python.md`). Each has YAML frontmatter: `slug`, `categories` (list), `priority` (1-5), `description`, `applies_when`, `related`, optional `source`.
-- **Category MOC** (Map of Content) — `<category>.md` file listing all leaves in that category, sorted by priority. 16 total: 7 task-based (architecture, design, teams, planning, quality, scale, decisions), 5 language-based (python, rust, java, elixir, frontend), 4 cross-cutting (testing, prs, style, communication).
-- **Top-level index** — `index.md` lists all 16 category MOCs grouped by axis.
+- **Leaf** — atomic `.md` file, one per entry (e.g., `conways-law.md`, `active-voice.md`). Each has YAML frontmatter: `slug`, `categories` (list), `priority` (1-5), `description`, `applies_when`, `related`, optional `source`.
+- **Category MOC** (Map of Content) — `<category>.md` file listing all leaves in that category, sorted by priority.
+  - `code/`: architecture, design, teams, planning, quality, scale, decisions, languages, ux, testing, prs, style, communication.
+  - `write/`: tone, structure, format.
+- **Top-level index** — `<domain>/index.md` lists that domain's category MOCs grouped by axis.
 
-Leaves with multiple categories appear in multiple MOCs. Filesystem stays flat; categorization lives in frontmatter.
+Leaves with multiple categories appear in multiple MOCs of their own domain. Filesystem stays flat within each domain; categorization lives in frontmatter.
 
 ### Retrieval Flow
 
-The `/code <task>` slash command directs the agent to:
+The `/code <task>` and `/write <task>` slash commands direct the agent to:
 
-1. Read `~/.claude/knowledge/index.md` to see territories
+1. Read `~/.claude/knowledge/<domain>/index.md` to see that domain's territories
 2. Classify the task against categories
 3. Read 1-2 relevant category MOCs
 4. Pick 3-7 leaves by description + `applies_when` match
 5. Read leaf files fully before decisions
 
-The agent narrates each Read with a `KB:` prefix so you can audit which knowledge is entering context.
+`/code` reads only from `code/`; `/write` reads only from `write/`. The agent narrates each Read with a domain-scoped audit prefix:
+- `KB:` — code knowledge fetch
+- `WB:` — writing knowledge fetch
 
 ### Adding Knowledge
 
-The `/add-knowledge <instruction>` slash command:
+The `/add-knowledge <domain> <instruction>` slash command:
 
-1. Inspects existing leaves for voice matching
-2. Synthesizes a new entry per the schema
-3. Shows a draft for review
-4. Writes the file on approval
-5. Regenerates all MOCs via `scripts/gen_mocs.py`
-6. Validates structural integrity via `scripts/validate_kb.py`
+1. Parses the leading `<domain>` token (`code` or `write`)
+2. Inspects existing leaves in that domain for voice matching
+3. Synthesizes a new entry per the schema
+4. Shows a draft for review
+5. Writes the file on approval to `knowledge/<domain>/<slug>.md`
+6. Regenerates MOCs via `scripts/gen_mocs.py --knowledge-dir <KB>`
+7. Validates structural integrity via `scripts/validate_kb.py --knowledge-dir <KB>`
 
 ### Helper Scripts
 
-- `scripts/gen_mocs.py` — regenerate category MOCs and `index.md` from leaf frontmatter. Run after manual leaf edits.
-- `scripts/validate_kb.py` — static checks (slug matches filename, wiki-links resolve, priorities in range, no empty descriptions, etc.). Run before `ccm apply`.
+- `scripts/gen_mocs.py` — regenerate category MOCs and `index.md` from leaf frontmatter. Domain auto-detected from `--knowledge-dir` basename (`code` or `write`). Per-domain `CATEGORY_META`, `GROUP_ORDER`, and `CATEGORY_TENSIONS`.
+- `scripts/validate_kb.py` — static checks (slug matches filename, wiki-links resolve, priorities in range, no empty descriptions, etc.). Domain auto-detected from `--knowledge-dir` basename.
 
-Both default to the sibling `knowledge/` directory. Override with `--knowledge-dir <path>`.
+Both default to `knowledge/code/`. Always pass `--knowledge-dir <path>` for the write domain.
+
+### Fetch-Frequency Logging
+
+A `PostToolUse` hook (`hooks/log-knowledge-fetch.sh`) appends to `knowledge/<domain>/.stats/fetches.jsonl` on every Read of a `knowledge/<domain>/*.md` file. Domain is detected from the file path. Use the `knowledge-stats` skill to aggregate.
