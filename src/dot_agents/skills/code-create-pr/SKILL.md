@@ -150,17 +150,35 @@ Determine the PR title convention before creating the PR:
    - GitHub: `gh pr create --base <default-branch> --title "<title>" --body
      "<body>"`
    - GitLab: `glab mr create -b <default-branch> -t "<title>" -d "<body>"`
-3. Keep the PR body short:
+3. Keep the PR body short. Do not add section headings by default. Most PRs
+   need only a sentence or a few bullets covering what changed and why,
+   followed by the issue line:
 
-```markdown
-## Summary
-- <what changed>
-- <why this change was needed>
+   ```markdown
+   - <what changed>
+   - <why this change was needed>
 
-Closes <issue-id>
-```
+   Closes <issue-id>
+   ```
 
-Omit the issue line when no issue applies. Do not add a testing section.
+   Add a `## Summary` heading (and other headings) only when the body is long
+   enough that a reader benefits from structure — for example a large change
+   with several distinct parts that each need their own labeled section:
+
+   ```markdown
+   ## Summary
+   <one or two sentences framing the change>
+
+   ## <Area or component>
+   - <what changed here and why>
+
+   ## <Another area>
+   - <what changed here and why>
+
+   Closes <issue-id>
+   ```
+
+   Omit the issue line when no issue applies. Do not add a testing section.
 
 ### 7. Monitor PR Readiness
 
