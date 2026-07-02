@@ -1,6 +1,14 @@
 {
+{{- $settingsPath := joinPath .chezmoi.homeDir ".claude/settings.json" }}
+{{- if stat $settingsPath }}
+{{-   $existing := include $settingsPath | fromJson }}
+{{-   if $existing.model }}
+  "model": {{ $existing.model | toJson }},
+{{-   end }}
+{{- end }}
   "attribution": {
-    "commit": ""
+    "commit": "",
+    "pr": ""
   },
   "includeCoAuthoredBy": false,
   "permissions": {
