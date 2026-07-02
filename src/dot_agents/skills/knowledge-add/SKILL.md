@@ -47,7 +47,30 @@ source: <url>
 5. On approval, write `<KB>/<slug>.md`.
 6. Run `python3 ~/.agents/scripts/gen_mocs.py --knowledge-dir <KB>`.
 7. Run `python3 ~/.agents/scripts/validate_kb.py --knowledge-dir <KB>`.
-8. Fix validation errors, then report the final file path and touched MOCs.
+8. Fix any validation errors.
+9. Ask about contribution scope. Steps 5-6 only wrote to `~/.agents/` on this
+   machine; the chezmoi source of truth is the `dotagents` repo, and nothing
+   reaches other machines until it lands there. Ask whether the entry is:
+   - Universal (default) — belongs on every machine → contribute it back.
+   - Machine-specific — only relevant here (e.g. work-laptop specifics) →
+     leave it in `~/.agents/` only and skip to step 10.
+
+   If universal, sync into the chezmoi source and push. Touched files are the new
+   leaf plus every regenerated MOC (`index.md` always; each mapped category MOC —
+   check `git status` if unsure):
+   ```bash
+   CFG=--config=$HOME/.config/chezmoi/dotagents.toml
+   chezmoi $CFG add ~/.agents/knowledge/<DOMAIN>/<slug>.md
+   chezmoi $CFG re-add ~/.agents/knowledge/<DOMAIN>/index.md ~/.agents/knowledge/<DOMAIN>/<touched-category-MOCs>
+   REPO=$(git -C "$(chezmoi $CFG source-path)" rev-parse --show-toplevel)
+   git -C "$REPO" add src/dot_agents/knowledge/<DOMAIN>/
+   git -C "$REPO" commit -m "Add <slug> knowledge leaf (<DOMAIN>)"
+   git -C "$REPO" push
+   ```
+   Use `re-add` (not `apply`) so the regenerated MOCs flow home → source, not the
+   reverse.
+10. Report the final file path, touched MOCs, and the contribution scope chosen
+    (universal + pushed, or machine-local).
 
 ## Rules
 

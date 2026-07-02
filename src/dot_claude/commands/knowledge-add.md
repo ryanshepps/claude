@@ -58,7 +58,25 @@ source: <url>                        # optional; include if external
 5. **On approval, write** to `<KB>/<slug>.md`.
 6. **Regenerate MOCs**: run `python3 ~/.agents/scripts/gen_mocs.py --knowledge-dir <KB>`. Report the output.
 7. **Validate**: run `python3 ~/.agents/scripts/validate_kb.py --knowledge-dir <KB>`. If errors, fix the new file and revalidate.
-8. **Report** the final file path, which MOCs now include it, and any warnings.
+8. **Ask about contribution scope.** Steps 5-7 only touched `~/.agents/` (materialized runtime state on THIS machine). The chezmoi source of truth is the `dotagents` repo; nothing reaches other machines until it lands there. Ask the user which this entry is:
+   - **Universal** (default, common case) — belongs on every machine → contribute it back to the `dotagents` repo.
+   - **Machine-specific** — only relevant here (e.g. work-laptop specifics, a client's conventions) → leave it in `~/.agents/` only. Skip the rest of this step and go to step 9.
+
+   If universal, sync the touched files into the chezmoi source, then commit + push. The touched files are the new leaf plus every MOC that regeneration rewrote (always `index.md`; plus each category MOC the leaf's `categories` map to — check `git status` if unsure):
+   ```bash
+   CFG=--config=$HOME/.config/chezmoi/dotagents.toml
+   chezmoi $CFG add ~/.agents/knowledge/<DOMAIN>/<slug>.md
+   chezmoi $CFG re-add ~/.agents/knowledge/<DOMAIN>/index.md ~/.agents/knowledge/<DOMAIN>/<touched-category-MOCs>
+   ```
+   `add` registers the new leaf; `re-add` pulls the regenerated MOC edits back into source (plain `apply` would overwrite them the wrong way — never `apply` here). Confirm `chezmoi $CFG status` is clean for the KB, then commit and push from the source repo (git root, not the `src/` source-path):
+   ```bash
+   REPO=$(git -C "$(chezmoi $CFG source-path)" rev-parse --show-toplevel)
+   git -C "$REPO" add src/dot_agents/knowledge/<DOMAIN>/
+   git -C "$REPO" commit -m "Add <slug> knowledge leaf (<DOMAIN>)"
+   git -C "$REPO" push
+   ```
+   Report the commit hash and whether the push succeeded.
+9. **Report** the final file path, which MOCs now include it, the contribution scope chosen (universal + pushed, or machine-local), and any warnings.
 
 ## Rules
 
