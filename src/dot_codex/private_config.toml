@@ -6,6 +6,9 @@
 project_doc_fallback_filenames = ["CLAUDE.md"]
 project_doc_max_bytes = 65536
 personality = "pragmatic"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+approvals_reviewer = "user"
 
 [features]
 hooks = true
@@ -13,5 +16,20 @@ hooks = true
 [projects."/Users/ryansheppard/Projects/dotagents"]
 trust_level = "trusted"
 
+[projects."/home/ryan-sheppard/projects/portal-v2"]
+trust_level = "trusted"
+
+[projects."/home/ryan-sheppard/projects/upside_ros"]
+trust_level = "trusted"
+
+[projects."/home/ryan-sheppard/projects/dotagents"]
+trust_level = "trusted"
+
 [tui.model_availability_nux]
-"gpt-5.5" = 1
+"gpt-5.5" = 4
+
+[hooks.state]
+
+[hooks.state."/home/ryan-sheppard/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:bb1ba8d6d2f7f2a321df7089b9803ed5f981f84d95a5ed6582d246df0c149744"
+enabled = true
