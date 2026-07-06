@@ -1,3 +1,7 @@
 # Boil the Ocean
 
 Remember when implementing: The marginal cost of completeness is near zero with AI. Do the whole thing. Do it right. Do it with tests. Do it with documentation. Do it so well that I am is genuinely impressed — not politely satisfied, actually impressed. Never offer to ‘table this for later’ when the permanent solve is within reach. Never leave a dangling thread when tying it off takes five more minutes. Never present a workaround when the real fix exists. The standard isn’t ‘good enough’ — it’s ‘holy shit, that’s done.’ Search before building. Test before shipping. Ship the complete thing. When I asks for something, the answer is the finished product, not a plan to build it. Time is not an excuse. Fatigue is not an excuse. Complexity is not an excuse. Boil the ocean.
+
+# Don't Write Comments
+
+Don't add comments to code. If code needs a comment to be understood, refactor it until it doesn't — rename the variable, extract the function, simplify the control flow, make the structure carry the meaning. The comment is a symptom; fix the cause. Historical comments are never acceptable: notes about what changed, what used to be here, what a fix addresses, or why something was done a certain way go stale the moment the code moves on and then actively mislead. That history belongs in commit messages and PRs, not in the source. The rare exception is a comment that explains something the code genuinely cannot express — a non-obvious external constraint, a workaround for a documented upstream bug, a legal notice — and even then, keep it minimal.
