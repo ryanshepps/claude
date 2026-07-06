@@ -27,6 +27,7 @@ Use modern ES2023+ and TypeScript 5+ as the baseline. Legacy patterns are not op
 - Use `structuredClone()` for deep copies, not `JSON.parse(JSON.stringify(x))`
 - Use `async`/`await` over raw `.then()` chains
 - Use `Temporal` (or `date-fns`/`luxon`) over the legacy `Date` object for anything beyond a timestamp
+- Never add `console.log`, `console.info`, `console.warn`, or `console.error` to production code. Use console output only for temporary debugging and remove it before shipping
 
 ### TypeScript
 
@@ -393,6 +394,7 @@ Accessibility is a correctness concern, not a polish step.
 - Default exports for components (except in Next.js special files)
 - `FC` / `FunctionComponent` type annotations
 - Throwing strings or plain objects as errors -- always throw `Error` (or subclass)
+- Console logging in production code paths
 - Catching errors just to `console.log` and rethrow
 - Client-side data fetching when a Server Component could do it
 - Importing server-only code into Client Components
