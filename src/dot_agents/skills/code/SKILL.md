@@ -41,6 +41,16 @@ If the task is trivial, skip the fetch entirely. Do not narrate. Do not explain.
 5. **Read leaf files fully** before decisions. Follow `related:` fields when adjacent entries would strengthen the reasoning.
 6. **Re-fetch as task shape shifts** — different subtasks need different entries. Knowledge is cheap to re-read.
 
+## Knowledge Gaps (record misses)
+
+If you traverse the KB for a substantive task and no leaf adequately covers it, record the gap so `knowledge-reflect` can later turn it into a new-leaf candidate:
+
+```bash
+python3 ~/.agents/scripts/kb_gap.py --domain code --note "<what was missing, one line>" --task "<short task context>"
+```
+
+Record a gap only for a genuine miss on substantive work — not when an adequate leaf exists, and not for trivial tasks you correctly skipped. One line per distinct gap. This is the signal that grows the corpus; the miss is worth more than the hit.
+
 ## Audit Trail (MANDATORY)
 
 Before each Read of a knowledge file, state in one line WHAT you're fetching and WHY. Use the exact `KB:` prefix so the user can scan for these lines.

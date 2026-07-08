@@ -16,6 +16,15 @@ stats_dir="$HOME/.agents/knowledge/$domain/.stats"
 mkdir -p "$stats_dir"
 
 ts=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-jq -nc --arg ts "$ts" --arg path "$file_path" --arg domain "$domain" '{ts: $ts, path: $path, domain: $domain}' >> "$stats_dir/fetches.jsonl"
+session_id=$(echo "$input" | jq -r '.session_id // empty')
+cwd=$(echo "$input" | jq -r '.cwd // empty')
+jq -nc \
+  --arg ts "$ts" \
+  --arg path "$file_path" \
+  --arg domain "$domain" \
+  --arg session_id "$session_id" \
+  --arg cwd "$cwd" \
+  '{ts: $ts, path: $path, domain: $domain, session_id: $session_id, cwd: $cwd}' \
+  >> "$stats_dir/fetches.jsonl"
 
 exit 0

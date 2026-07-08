@@ -19,7 +19,14 @@
   },
   "hooks": {
     "SessionStart": [
-{{- if .work }}
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {{ .chezmoi.homeDir }}/.claude/hooks/kb-reflect-nudge.sh"
+          }
+        ]
+      }{{- if .work }},
       {
         "hooks": [
           {
@@ -27,8 +34,7 @@
             "command": "bash {{ .chezmoi.homeDir }}/knowledge/.claude/hooks/session-orient.sh"
           }
         ]
-      }
-{{- end }}
+      }{{- end }}
     ],
     "PostToolUse": [
       {

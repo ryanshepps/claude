@@ -9,6 +9,8 @@ description: Report fetch frequency stats for a domain-scoped knowledge base fro
 
 Aggregates per-domain `~/.agents/knowledge/<domain>/.stats/fetches.jsonl` (written by `log-knowledge-fetch.sh` PostToolUse hook on every Read of a `~/.agents/knowledge/<domain>/*.md` file). Reports fetch counts split by leaf vs MOC. Cumulative, all-time. Read-only — never edits priorities.
 
+To act on this telemetry — turn recorded gaps into new leaves, co-fetches into `related:` links, and counts into reviewed priority changes — use `knowledge-reflect` (proposes edits, you approve). This skill is the raw-count view; `knowledge-reflect` is the curation loop.
+
 ## When to Use
 
 - User asks for knowledge fetch stats / metrics / "what gets fetched most" — ask which domain if unclear
