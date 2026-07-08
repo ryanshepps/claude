@@ -25,6 +25,14 @@ Entry points:
 
 Read each knowledge file via the `Read` tool — the PostToolUse hook auto-logs the fetch to `~/.agents/knowledge/code/.stats/fetches.jsonl`. Don't bypass with `cat`/`grep`; the stats only increment on `Read`.
 
+If you traverse the KB during a brainstorm and no leaf covers the decision at hand, record the gap so `knowledge-reflect` can turn it into a new-leaf candidate — same convention as the `code` skill:
+
+```bash
+python3 ~/.agents/scripts/kb_gap.py --domain code --note "<what was missing, one line>" --task "<short brainstorm context>"
+```
+
+Record only genuine misses on substantive decisions, not when an adequate leaf exists.
+
 ### Audit trail (MANDATORY)
 
 Before every Read of a knowledge file, emit one line with the `KB:` prefix stating WHAT and WHY in terms of THIS brainstorm. Same convention as the `code` skill.
