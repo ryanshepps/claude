@@ -2,13 +2,13 @@
 slug: writing-front-end
 categories: [languages]
 priority: 1
-description: Next.js 15+ / React 19+ / TypeScript 5+ style — Server Components, hooks, type design, error boundaries, testing.
+description: Next.js 15+ / React 19+ / TypeScript 5+ style — Server Components, type design, error boundaries, testing.
 applies_when:
   - writing React components
   - building Next.js apps
   - designing TypeScript types
   - writing frontend tests
-related: [coding-style, writing-tests]
+related: [writing-react-hooks, coding-style, writing-tests]
 ---
 
 # Front-End (Next.js / React / TypeScript / JavaScript)
@@ -137,14 +137,23 @@ Rules:
 ### Component Structure
 
 ```tsx
-// WRONG: mutable, untyped, unclear inputs
+// WRONG: untyped props, an Effect used to notify the parent, hard-coded DOM id
 export default function Card(props) {
   const [open, setOpen] = useState(false);
-  props.onToggle && props.onToggle(open);
-  return <div>{props.children}</div>;
+
+  useEffect(() => {
+    props.onToggle?.(open);
+  }, [open]);
+
+  return (
+    <section aria-labelledby="card-title">
+      <h2 id="card-title">{props.title}</h2>
+      {props.children}
+    </section>
+  );
 }
 
-// CORRECT: typed props, explicit contract, stable callback usage
+// CORRECT: typed props, parent notified from the handler, collision-free id
 type CardProps = {
   title: string;
   children: ReactNode;
@@ -153,15 +162,21 @@ type CardProps = {
 
 export function Card({ title, children, onToggle }: CardProps): ReactNode {
   const [open, setOpen] = useState(false);
+  const headingId = useId();
 
-  useEffect(() => {
-    onToggle?.(open);
-  }, [open, onToggle]);
+  function handleToggle() {
+    const next = !open;
+    setOpen(next);
+    onToggle?.(next);
+  }
 
   return (
-    <section aria-labelledby="card-title">
-      <h2 id="card-title">{title}</h2>
-      {children}
+    <section aria-labelledby={headingId}>
+      <h2 id={headingId}>{title}</h2>
+      <button type="button" aria-expanded={open} onClick={handleToggle}>
+        {open ? "Hide" : "Show"} details
+      </button>
+      {open && children}
     </section>
   );
 }
@@ -177,18 +192,13 @@ Rules:
 
 ### Hooks
 
-- Call hooks only at the top level of a component or custom hook -- never conditionally, never in loops (exception: React 19's `use()` hook)
-- Custom hooks start with `use` and return either a value, a tuple, or a stable object. Be consistent within a codebase
-- Never put non-serializable values in state if the component may hydrate
-- Derive state during render -- do not mirror props into state with `useEffect`
-- `useEffect` is for synchronizing with external systems (subscriptions, DOM APIs, non-React code). If you're reaching for it for data fetching, reach for a Server Component or a data library (`@tanstack/react-query`, SWR) instead
-- Specify complete dependency arrays. Never disable `react-hooks/exhaustive-deps` -- fix the underlying issue
+The full rules -- Effects, `useEffectEvent`, `useSyncExternalStore`, refs, concurrency, custom hook design -- live in [[writing-react-hooks]]. The essentials:
 
-### React 19 Features
-
-- Use `use()` to unwrap promises and context, including inside conditionals
-- Use Actions (`action` prop on `<form>`) with `useActionState` and `useFormStatus` for form handling -- they work without JS and integrate with Suspense
-- Use `useOptimistic` for instant UI feedback on pending mutations
+- Call hooks only at the top level of a Client Component or custom hook -- never conditionally, never in loops (exception: React 19's `use()`)
+- Derive state during render. Never use `useEffect` to mirror props into state, reset state on a prop change, or notify a parent -- that belongs in the event handler that changed the state
+- `useEffect` is for synchronizing with external systems. For data fetching use a Server Component or a data library (`@tanstack/react-query`, SWR); for external stores use `useSyncExternalStore`
+- Specify complete dependency arrays. Never disable `react-hooks/exhaustive-deps` -- reach for `useEffectEvent` instead
+- Reach for the React 19 hook APIs where they fit: `use()` for promises and context, `useActionState` / `useFormStatus` for form Actions, `useOptimistic` for pending mutations
 - Rely on the React Compiler for memoization -- do not reach for `useMemo`/`useCallback`/`memo` unless profiling shows a real problem
 
 ## Next.js (App Router)

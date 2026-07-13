@@ -5,7 +5,7 @@ type: moc
 
 # Knowledge Base — code
 
-114 entries. Software-engineering laws, language rules, and cross-cutting craft guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).
+115 entries. Software-engineering laws, language rules, and cross-cutting craft guides. Leaves declare priority (1=foundational, 5=niche), applies_when (task contexts), and categories (list).
 
 ## Task territories (software engineering laws)
 
@@ -29,7 +29,7 @@ User-facing perception and interaction laws.
 
 Per-language style and idiom rules. Fetch when writing code in that language.
 
-- [[languages]] — Per-language coding rules and style guides. (10 entries)
+- [[languages]] — Per-language coding rules and style guides. (11 entries)
 
 ## Cross-cutting
 
