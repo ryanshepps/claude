@@ -57,12 +57,10 @@ Rules:
 - Lead with your recommended option and explain why — cite the leaves that shaped it by slug
 
 **Presenting the design:**
-- Once you believe you understand what you're building, present the design
-- Break it into sections of 200-300 words
-- Ask after each section whether it looks right so far
+- Once you believe you understand what you're building, present the tradeoffs of the design. Skip anything that is unambiguous and invariable.
+- Break each tradeoff into 100-200 words. 
+- Your job is to let the user guide the design by understanding the tradeoffs they will be making.
 - Cover: architecture, components, data flow, error handling, testing
-- End with an engineering review handoff that prepares
-  `code-plan-eng-review` to evaluate the accepted design without guessing
 - Be ready to go back and clarify if something doesn't make sense
 
 ## After the Design
