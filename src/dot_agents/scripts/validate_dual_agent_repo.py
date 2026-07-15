@@ -36,6 +36,7 @@ def validate_required_paths() -> None:
         SHARED / "skills",
         SHARED / "knowledge",
         SHARED / "scripts",
+        CLAUDE / "CLAUDE.md",
         CLAUDE / "settings.json.tmpl",
         CLAUDE / "symlink_skills",
         CLAUDE / "symlink_knowledge",
@@ -120,6 +121,16 @@ def validate_root_instruction_contract() -> None:
         fail("CLAUDE.md and AGENTS.md Dual-Agent Contract sections differ")
 
 
+def validate_global_instruction_parity() -> None:
+    claude_path = CLAUDE / "CLAUDE.md"
+    codex_path = CODEX / "AGENTS.md"
+    if read(claude_path) != read(codex_path):
+        fail(
+            f"{claude_path.relative_to(ROOT)} and {codex_path.relative_to(ROOT)} "
+            "must be byte-identical"
+        )
+
+
 def main() -> int:
     validate_required_paths()
     validate_symlink_sources()
@@ -127,6 +138,7 @@ def main() -> int:
     validate_command_skill_parity()
     validate_no_stale_shared_paths()
     validate_root_instruction_contract()
+    validate_global_instruction_parity()
     print("dual-agent repository validation passed")
     return 0
 

@@ -13,6 +13,7 @@ both files.
 - Do not put shared skills, shared knowledge, or shared helper scripts directly under `src/dot_claude/` or `src/dot_codex/`.
 - When adding a Claude slash command in `src/dot_claude/commands/<name>.md`, add a matching shared skill in `src/dot_agents/skills/<name>/SKILL.md` so Codex has the same workflow.
 - When adding shared guidance to either root instruction file, update the sibling root instruction file.
+- Keep the global instruction files `src/dot_claude/CLAUDE.md` and `src/dot_codex/AGENTS.md` byte-identical; edit both together.
 - Validate compatibility with `python3 src/dot_agents/scripts/validate_dual_agent_repo.py`.
 
 ## Purpose
