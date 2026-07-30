@@ -24,6 +24,7 @@ Engineering laws grouped by the kind of decision they inform.
 User-facing perception and interaction laws.
 
 - [[ux]] — User experience laws: perception, cognition, decision-making, interaction patterns. (31 entries)
+- Always fetch [[ux]] when doing frontend work that creates or changes a user interface.
 
 ## Languages
 
