@@ -14,6 +14,7 @@ How components couple, where boundaries fall, and why organizational shape leaks
 - [[galls-law]] (p1) — A complex system that works is invariably found to have evolved from a simple system that worked.
 - [[hyrums-law]] (p1) — With a sufficient number of API users, all observable behaviors of your system will be depended on by somebody.
 - [[solid-principles]] (p1) — Five main guidelines that enhance software design, making code more maintainable and scalable.
+- [[designing-testable-cpp-robotics]] (p2) — Design C++ and ROS 2 components with explicit seams, deterministic lifetimes, and pure decision logic so correctness can be verified without hardware.
 - [[fallacies-of-distributed-computing]] (p2) — A set of eight false assumptions that new distributed system designers often make.
 - [[hexagonal-architecture]] (p2) — Isolate domain logic from I/O by defining ports (interfaces the core needs) and adapters (implementations for DB, HTTP, queues).
 - [[keep-test-paths-out-of-production-runtime]] (p2) — Keep test and local-only execution paths out of production runtime code; mock external systems at process or protocol boundaries instead.

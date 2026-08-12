@@ -11,6 +11,7 @@ Principles and architecture-level moves that make test suites fast, reliable, an
 
 - [[writing-tests]] (p1) — Test writing principles — black-box, no implementation details, test isolation, editing tests is fine.
 - [[data-driven-tests]] (p2) — Express test cases as `(input, expected_output)` rows — a table the test runner iterates — so adding coverage means adding data, not code.
+- [[designing-testable-cpp-robotics]] (p2) — Design C++ and ROS 2 components with explicit seams, deterministic lifetimes, and pure decision logic so correctness can be verified without hardware.
 - [[expectation-tests]] (p2) — Store expected output inline next to the assertion; provide an `UPDATE_EXPECT=1` mode that rewrites them when behavior changes intentionally.
 - [[keep-test-paths-out-of-production-runtime]] (p2) — Keep test and local-only execution paths out of production runtime code; mock external systems at process or protocol boundaries instead.
 - [[sans-io]] (p2) — Separate pure logic from I/O — push computation into pure functions, let a thin shell own filesystem, network, time, and randomness.

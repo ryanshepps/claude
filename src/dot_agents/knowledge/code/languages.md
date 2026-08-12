@@ -19,4 +19,5 @@ One leaf per language with idioms, error handling, and testing conventions. Fetc
 - [[writing-react-hooks]] (p1) — React 19+ hooks — rules of hooks, state, Effects, useEffectEvent, useSyncExternalStore, refs, concurrency, custom hook design.
 - [[writing-ruby]] (p1) — Ruby 4.0+ style -- expressive objects, Enumerable, keyword arguments, exceptions, immutable value objects, testing.
 - [[writing-rust]] (p1) — Rust style — ownership, thiserror/anyhow, type design, typestate pattern, testing.
+- [[designing-testable-cpp-robotics]] (p2) — Design C++ and ROS 2 components with explicit seams, deterministic lifetimes, and pure decision logic so correctness can be verified without hardware.
 - [[writing-react-native]] (p2) — React Native 0.84+ / Expo SDK 53+ style — New Architecture, Expo Router, Hermes V1, Reanimated worklets, FlashList, EAS.
