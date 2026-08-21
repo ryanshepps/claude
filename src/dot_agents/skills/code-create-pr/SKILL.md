@@ -150,9 +150,9 @@ Determine the PR title convention before creating the PR:
    - GitHub: `gh pr create --base <default-branch> --title "<title>" --body
      "<body>"`
    - GitLab: `glab mr create -b <default-branch> -t "<title>" -d "<body>"`
-3. Keep the PR body short. Do not add section headings by default. Most PRs
-   need only a sentence or a few bullets covering what changed and why,
-   followed by the issue line:
+3. The PR body size should reflect the size of the PR. For a small PR, keep the 
+   PR body short. Most PRs need only a sentence or a few bullets covering what
+   changed and why, followed by the issue line:
 
    ```markdown
    - <what changed>
@@ -161,24 +161,18 @@ Determine the PR title convention before creating the PR:
    Closes <issue-id>
    ```
 
-   Add a `## Summary` heading (and other headings) only when the body is long
-   enough that a reader benefits from structure — for example a large change
-   with several distinct parts that each need their own labeled section:
-
-   ```markdown
-   ## Summary
-   <one or two sentences framing the change>
-
-   ## <Area or component>
-   - <what changed here and why>
-
-   ## <Another area>
-   - <what changed here and why>
-
-   Closes <issue-id>
-   ```
-
    Omit the issue line when no issue applies. Do not add a testing section.
+
+  For larger PRs, you may include the following sections when they apply:
+
+  - Summary: One sentence explaining what the PR does, why it's needed and sets
+    the context for the rest of the PR body.
+  - Performance Considerations: List changes made in the name of performance,
+    or tradeoffs made that would hinder performance and for what reason.
+  - Production Readiness: List changes that have been made to make this
+    production ready (e.g., alerts, metrics, logs).
+  - Risk Assessment: How risky this change is to deploy and any mitigations
+    put in place to reduce.
 
 ### 7. Monitor PR Readiness
 
