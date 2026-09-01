@@ -32,6 +32,16 @@ If unclear, ask which intent in one short message before proceeding.
 4. Read leaf files fully before drafting, critiquing, or revising.
 5. Re-fetch as the task shape shifts.
 
+## Knowledge Gaps (record misses)
+
+If you traverse the KB for a substantive writing task and no leaf adequately covers it, record the gap so `knowledge-reflect` can later turn it into a new-leaf candidate:
+
+```bash
+python3 ~/.agents/scripts/kb_gap.py --domain write --note "<what was missing, one line>" --task "<short task context>"
+```
+
+Record a gap only for a genuine miss on substantive work — not when an adequate leaf exists, and not for trivial tasks. One line per distinct gap.
+
 ## Audit Trail
 
 Before each read of a writing-knowledge file, state one line with the `WB:`
